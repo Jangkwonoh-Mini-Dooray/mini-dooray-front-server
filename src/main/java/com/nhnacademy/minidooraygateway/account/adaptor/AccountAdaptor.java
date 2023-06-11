@@ -6,6 +6,7 @@ import com.nhnacademy.minidooraygateway.account.dto.member.PutMemberDto;
 import com.nhnacademy.minidooraygateway.account.dto.member.RespMemberDto;
 import com.nhnacademy.minidooraygateway.account.dto.member.authority.GetMemberAuthorityDto;
 import com.nhnacademy.minidooraygateway.account.dto.member.authority.PutMemberAuthorityDto;
+import com.nhnacademy.minidooraygateway.account.dto.member.status.GetMemberStatusDto;
 import com.nhnacademy.minidooraygateway.account.dto.member.status.PutMemberStatusDto;
 import com.nhnacademy.minidooraygateway.config.UrlProperties;
 import lombok.RequiredArgsConstructor;
@@ -76,6 +77,21 @@ public class AccountAdaptor {
         restTemplate.delete(urlProperties.getAccountServerUrl() + "/members/" + memberId);
     }
 
+    public GetMemberAuthorityDto getMemberAuthority(String memberId) {
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+        httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
+        HttpEntity<String> requestEntity = new HttpEntity<>(httpHeaders);
+
+        ResponseEntity<GetMemberAuthorityDto> exchange =
+                restTemplate.exchange(urlProperties.getAccountServerUrl() + "/members/" + memberId + "/authority",
+                        HttpMethod.GET,
+                        requestEntity,
+                        new ParameterizedTypeReference<GetMemberAuthorityDto>() {
+                        });
+        return exchange.getBody();
+    }
+
     public void updateMemberAuthority(String memberId, PutMemberAuthorityDto putMemberAuthorityDto) {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
@@ -87,6 +103,21 @@ public class AccountAdaptor {
                 requestEntity,
                 new ParameterizedTypeReference<Void>() {
                 });
+    }
+
+    public GetMemberStatusDto getMemberStatus(String memberId) {
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+        httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
+        HttpEntity<String> requestEntity = new HttpEntity<>(httpHeaders);
+
+        ResponseEntity<GetMemberStatusDto> exchange =
+                restTemplate.exchange(urlProperties.getAccountServerUrl() + "/members/" + memberId + "/status",
+                        HttpMethod.GET,
+                        requestEntity,
+                        new ParameterizedTypeReference<GetMemberStatusDto>() {
+                        });
+        return exchange.getBody();
     }
 
     public void updateMemberStatus(String memberId, PutMemberStatusDto putMemberStatusDto) {
