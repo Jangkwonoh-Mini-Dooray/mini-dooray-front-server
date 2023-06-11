@@ -9,7 +9,7 @@ import org.springframework.web.client.RestTemplate;
 import java.time.Duration;
 
 @Configuration
-@EnableConfigurationProperties(UrlProperties.class)
+@EnableConfigurationProperties({UrlProperties.class, OAuth2Properties.class})
 public class WebConfiguration {
     @Bean
     public RestTemplate restTemplate(RestTemplateBuilder builder) {
