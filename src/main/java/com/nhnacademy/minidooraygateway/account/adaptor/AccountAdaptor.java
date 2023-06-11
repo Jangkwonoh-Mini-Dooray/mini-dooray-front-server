@@ -1,6 +1,6 @@
-package com.nhnacademy.minidooraygateway.adaptor;
+package com.nhnacademy.minidooraygateway.account.adaptor;
 
-import com.nhnacademy.minidooraygateway.domain.Member;
+import com.nhnacademy.minidooraygateway.account.domain.Member;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;

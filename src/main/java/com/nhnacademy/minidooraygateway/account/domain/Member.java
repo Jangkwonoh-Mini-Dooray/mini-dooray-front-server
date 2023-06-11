@@ -1,4 +1,4 @@
-package com.nhnacademy.minidooraygateway.domain;
+package com.nhnacademy.minidooraygateway.account.domain;
 
 import lombok.*;
 
