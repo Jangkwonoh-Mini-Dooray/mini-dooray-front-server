@@ -11,6 +11,7 @@ import com.nhnacademy.minidooraygateway.config.UrlProperties;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -21,6 +22,7 @@ import java.util.List;
 public class AccountAdaptor {
     private final RestTemplate restTemplate;
     private final UrlProperties urlProperties;
+    private final PasswordEncoder passwordEncoder;
 
     public GetMemberDto getMember(String memberId) {
         HttpHeaders httpHeaders = new HttpHeaders();
@@ -41,6 +43,7 @@ public class AccountAdaptor {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
+        postMemberDto.setPassword(passwordEncoder.encode(postMemberDto.getPassword()));
         HttpEntity<PostMemberDto> requestEntity = new HttpEntity<>(postMemberDto, httpHeaders);
 
         ResponseEntity<RespMemberDto> exchange =
@@ -52,10 +55,12 @@ public class AccountAdaptor {
         return exchange.getBody();
     }
 
+
     public RespMemberDto updateMember(String memberId, PutMemberDto putMemberDto) {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
+        putMemberDto.setPassword(passwordEncoder.encode(putMemberDto.getPassword()));
         HttpEntity<PutMemberDto> requestEntity = new HttpEntity<>(putMemberDto, httpHeaders);
 
         ResponseEntity<RespMemberDto> exchange =

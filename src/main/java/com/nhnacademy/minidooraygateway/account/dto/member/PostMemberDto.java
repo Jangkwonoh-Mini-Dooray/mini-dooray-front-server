@@ -14,4 +14,5 @@ public class PostMemberDto {
     private String password;
     private String email;
     private String name;
+
 }
