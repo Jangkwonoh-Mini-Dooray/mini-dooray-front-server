@@ -1,7 +1,7 @@
 
 package com.nhnacademy.minidooraygateway.service;
-import com.nhnacademy.minidooraygateway.adaptor.AccountAdaptor;
-import com.nhnacademy.minidooraygateway.domain.Member;
+import com.nhnacademy.minidooraygateway.account.adaptor.AccountAdaptor;
+import com.nhnacademy.minidooraygateway.account.domain.Member;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -19,9 +19,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String memberId) throws UsernameNotFoundException {
-
         Member member = accountAdaptor.getMember(memberId);
-
         return new User(member.getMemberId(), member.getPassword(),
             Collections.singleton(new SimpleGrantedAuthority(member.getMemberAuthorityStatus())));
     }

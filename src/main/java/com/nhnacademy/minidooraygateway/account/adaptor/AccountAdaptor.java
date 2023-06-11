@@ -1,6 +1,7 @@
-package com.nhnacademy.minidooraygateway.adaptor;
+package com.nhnacademy.minidooraygateway.account.adaptor;
 
-import com.nhnacademy.minidooraygateway.domain.Member;
+import com.nhnacademy.minidooraygateway.account.domain.Member;
+import com.nhnacademy.minidooraygateway.config.UrlProperties;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
@@ -14,6 +15,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AccountAdaptor {
     private final RestTemplate restTemplate;
+    private final UrlProperties urlProperties;
 
     @Transactional(readOnly = true)
     public Member getMember(String memberId) {
@@ -23,11 +25,11 @@ public class AccountAdaptor {
         HttpEntity<String> requestEntity = new HttpEntity<>(httpHeaders);
 
         ResponseEntity<Member> exchange =
-                restTemplate.exchange("http://localhost:9090/" + "{member-id}",
+                restTemplate.exchange(urlProperties.getAccountServerUrl() + "/members/" + memberId,
                         HttpMethod.GET,
                         requestEntity,
-                        new ParameterizedTypeReference<Member>() {
-                        }, memberId);
+                        new ParameterizedTypeReference<>() {
+                        });
         return exchange.getBody();
     }
 }
