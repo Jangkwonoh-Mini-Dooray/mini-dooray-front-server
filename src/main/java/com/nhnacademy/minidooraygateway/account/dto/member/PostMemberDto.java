@@ -1,4 +1,5 @@
-package com.nhnacademy.minidooraygateway.account.domain;
+package com.nhnacademy.minidooraygateway.account.dto.member;
+
 
 import lombok.*;
 
@@ -8,9 +9,8 @@ import lombok.*;
 @EqualsAndHashCode
 @AllArgsConstructor
 @NoArgsConstructor
-public class Member {
+public class PostMemberDto {
     private String memberId;
-    private String memberAuthorityStatus;
     private String password;
     private String email;
     private String name;
