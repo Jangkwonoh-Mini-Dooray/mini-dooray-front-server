@@ -18,7 +18,8 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.formLogin(f -> f
                     .usernameParameter("memberId")
-                    .passwordParameter("password"))
+                    .passwordParameter("password")
+                        .defaultSuccessUrl("/test"))
                 .logout().and()
                 .csrf().disable()
                 .sessionManagement(s -> s.sessionConcurrency(sc -> sc
@@ -45,7 +46,4 @@ public class SecurityConfig {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder(16);
     }
-
-
-
 }
