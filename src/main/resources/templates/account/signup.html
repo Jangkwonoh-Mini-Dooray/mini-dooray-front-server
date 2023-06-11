@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title th:text="'sign up'"></title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<h1 th:text="'sign up'"></h1>
+<div class="log-container">
+  <form th:method="post" th:action="@{/signup}">
+    <p><input type="text" name="memberId" th:attr="placeholder='ID'"  />
+<!--    <p th:each="item : ${#fields.errors('id')}" th:text="${item}" class="error-message" />-->
+    </p>
+    <p><input type="password" name="password" th:attr="placeholder='Password'" />
+<!--    <p th:each="item : ${#fields.errors('password')}" th:text="${item}" class="error-message" />-->
+    <p><input type="email" name="email" th:attr="placeholder='Email'" />
+<!--    <p  th:if="${not #strings.isEmpty(message)}" th:text="${message}" class="error-message" ></p>-->
+    <p><input type="text" name="name" th:attr="placeholder='Name'" />
+    <p> <button type="submit" th:text="'sign up'"></button></p>
+  </form>
+</div>
+</body>
+</html>
