@@ -15,7 +15,9 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.formLogin(f -> f
                     .usernameParameter("memberId")
-                    .passwordParameter("password"))
+                    .passwordParameter("password")
+                        .loginPage("/login")
+                        .loginProcessingUrl("/"))
                 .logout().and()
                 .csrf().disable()
                 .sessionManagement(s -> s.sessionConcurrency(sc -> sc
