@@ -19,7 +19,7 @@ public class SecurityConfig {
         return http.formLogin(f -> f
                     .usernameParameter("memberId")
                     .passwordParameter("password")
-                        .defaultSuccessUrl("/test"))
+                        .defaultSuccessUrl("/account/test"))
                 .logout().and()
                 .csrf().disable()
                 .sessionManagement(s -> s.sessionConcurrency(sc -> sc

@@ -9,6 +9,7 @@ import com.nhnacademy.minidooraygateway.account.dto.member.authority.PutMemberAu
 import com.nhnacademy.minidooraygateway.account.dto.member.status.GetMemberStatusDto;
 import com.nhnacademy.minidooraygateway.account.dto.member.status.PutMemberStatusDto;
 import com.nhnacademy.minidooraygateway.config.UrlProperties;
+import com.nhnacademy.minidooraygateway.util.DefaultHttpHeader;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
@@ -26,10 +27,7 @@ public class AccountAdaptor {
     private final PasswordEncoder passwordEncoder;
 
     public GetMemberDto getMember(String memberId) {
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
-        httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
-        HttpEntity<String> requestEntity = new HttpEntity<>(httpHeaders);
+        HttpEntity<String> requestEntity = new HttpEntity<>(DefaultHttpHeader.getHeader());
 
         ResponseEntity<GetMemberDto> exchange =
                 restTemplate.exchange(urlProperties.getAccountServerUrl() + "/members/" + memberId,
@@ -41,11 +39,8 @@ public class AccountAdaptor {
     }
 
     public RespMemberDto createMember(PostMemberDto postMemberDto) {
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
-        httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
         postMemberDto.setPassword(passwordEncoder.encode(postMemberDto.getPassword()));
-        HttpEntity<PostMemberDto> requestEntity = new HttpEntity<>(postMemberDto, httpHeaders);
+        HttpEntity<PostMemberDto> requestEntity = new HttpEntity<>(postMemberDto, DefaultHttpHeader.getHeader());
 
         ResponseEntity<RespMemberDto> exchange =
                 restTemplate.exchange(urlProperties.getAccountServerUrl() + "/members",
@@ -58,11 +53,8 @@ public class AccountAdaptor {
 
 
     public RespMemberDto updateMember(String memberId, PutMemberDto putMemberDto) {
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
-        httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
         putMemberDto.setPassword(passwordEncoder.encode(putMemberDto.getPassword()));
-        HttpEntity<PutMemberDto> requestEntity = new HttpEntity<>(putMemberDto, httpHeaders);
+        HttpEntity<PutMemberDto> requestEntity = new HttpEntity<>(putMemberDto, DefaultHttpHeader.getHeader());
 
         ResponseEntity<RespMemberDto> exchange =
                 restTemplate.exchange(urlProperties.getAccountServerUrl() + "/members/" + memberId,
@@ -78,25 +70,19 @@ public class AccountAdaptor {
     }
 
     public GetMemberAuthorityDto getMemberAuthority(String memberId) {
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
-        httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
-        HttpEntity<String> requestEntity = new HttpEntity<>(httpHeaders);
+        HttpEntity<String> requestEntity = new HttpEntity<>(DefaultHttpHeader.getHeader());
 
         ResponseEntity<GetMemberAuthorityDto> exchange =
                 restTemplate.exchange(urlProperties.getAccountServerUrl() + "/members/" + memberId + "/authority",
                         HttpMethod.GET,
                         requestEntity,
-                        new ParameterizedTypeReference<GetMemberAuthorityDto>() {
+                        new ParameterizedTypeReference<>() {
                         });
         return exchange.getBody();
     }
 
     public void updateMemberAuthority(String memberId, PutMemberAuthorityDto putMemberAuthorityDto) {
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
-        httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
-        HttpEntity<PutMemberAuthorityDto> requestEntity = new HttpEntity<>(putMemberAuthorityDto, httpHeaders);
+        HttpEntity<PutMemberAuthorityDto> requestEntity = new HttpEntity<>(putMemberAuthorityDto, DefaultHttpHeader.getHeader());
 
         restTemplate.exchange(urlProperties.getAccountServerUrl() + "/members/" + memberId + "/authority",
                 HttpMethod.PUT,
@@ -106,10 +92,7 @@ public class AccountAdaptor {
     }
 
     public GetMemberStatusDto getMemberStatus(String memberId) {
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
-        httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
-        HttpEntity<String> requestEntity = new HttpEntity<>(httpHeaders);
+        HttpEntity<String> requestEntity = new HttpEntity<>(DefaultHttpHeader.getHeader());
 
         ResponseEntity<GetMemberStatusDto> exchange =
                 restTemplate.exchange(urlProperties.getAccountServerUrl() + "/members/" + memberId + "/status",
@@ -121,10 +104,7 @@ public class AccountAdaptor {
     }
 
     public void updateMemberStatus(String memberId, PutMemberStatusDto putMemberStatusDto) {
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
-        httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
-        HttpEntity<PutMemberStatusDto> requestEntity = new HttpEntity<>(putMemberStatusDto, httpHeaders);
+        HttpEntity<PutMemberStatusDto> requestEntity = new HttpEntity<>(putMemberStatusDto, DefaultHttpHeader.getHeader());
 
         restTemplate.exchange(urlProperties.getAccountServerUrl() + "/members/" + memberId + "/status",
                 HttpMethod.PUT,
@@ -132,5 +112,4 @@ public class AccountAdaptor {
                 new ParameterizedTypeReference<Void>() {
                 });
     }
-
 }
