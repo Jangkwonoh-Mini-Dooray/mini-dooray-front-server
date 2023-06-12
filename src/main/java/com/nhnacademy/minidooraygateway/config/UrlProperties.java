@@ -11,6 +11,34 @@ public class UrlProperties {
     private String accountUrl;
     private String taskUrl;
 
+    public String getMember() {
+        return accountUrl + "/members/{member-id}";
+    }
+    public String createMember() {
+        return accountUrl + "/members";
+    }
+    public String updateMember() {
+        return accountUrl + "/members/{member-id}";
+    }
+    public String deleteMember() {
+        return accountUrl + "/members/{member-id}";
+    }
+
+    public String getMemberAuthority() {
+        return accountUrl + "/members/{member-id}/authority";
+    }
+    public String updateMemberAuthority() {
+        return accountUrl + "/members/{member-id}/authority";
+    }
+    public String getMemberStatus() {
+        return accountUrl + "/members/{member-id}/status";
+    }
+    public String updateMemberStatus() {
+        return accountUrl + "/members/{member-id}/status";
+    }
+
+
+
     public String getTask() {
         return taskUrl + "/projects/{project-id}/posts";
     }
