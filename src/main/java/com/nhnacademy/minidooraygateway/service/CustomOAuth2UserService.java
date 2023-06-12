@@ -20,4 +20,6 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
         // 2. token 으로 email list 갖고 온다.
         // 3. email list 에서 true 인 애 가져온다.
     }
+
+
 }
