@@ -39,18 +39,6 @@ public class AccountAdaptor {
         return exchange.getBody();
     }
 
-    public GetMemberDto getMemberByEmail(String email) {
-        HttpEntity<String> requestEntity = new HttpEntity<>(DefaultHttpHeader.getHeader());
-
-        ResponseEntity<GetMemberDto> exchange =
-                restTemplate.exchange(urlProperties.getMemberByEmail(),
-                        HttpMethod.GET,
-                        requestEntity,
-                        new ParameterizedTypeReference<>() {
-                        }, email);
-        return exchange.getBody();
-    }
-
     public RespMemberDto createMember(PostMemberDto postMemberDto) {
         postMemberDto.setPassword(passwordEncoder.encode(postMemberDto.getPassword()));
         HttpEntity<PostMemberDto> requestEntity = new HttpEntity<>(postMemberDto, DefaultHttpHeader.getHeader());

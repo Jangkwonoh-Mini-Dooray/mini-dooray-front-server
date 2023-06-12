@@ -46,7 +46,6 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
                         });
         List<OAuth2GitEmail> body = response.getBody();
         String email = getPrimaryEmail(body);
-
         log.error("email : {}",email);
         GetMemberDto dto  = getMemberByEmail(email);
         return new User(dto.getMemberId(), dto.getPassword());
