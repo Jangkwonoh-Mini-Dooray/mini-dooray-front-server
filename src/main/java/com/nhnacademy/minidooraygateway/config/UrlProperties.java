@@ -15,7 +15,7 @@ public class UrlProperties {
         return accountUrl + "/members/{member-id}";
     }
     public String getMemberByEmail() {
-        return accountUrl + "/members/{email}";
+        return accountUrl + "/members/email/{email}";
     }
     public String createMember() {
         return accountUrl + "/members";
