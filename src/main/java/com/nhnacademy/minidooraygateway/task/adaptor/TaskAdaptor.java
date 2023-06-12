@@ -1,12 +1,12 @@
 package com.nhnacademy.minidooraygateway.task.adaptor;
 
-import com.nhnacademy.minidooraygateway.account.dto.member.PutMemberDto;
-import com.nhnacademy.minidooraygateway.account.dto.member.RespMemberDto;
 import com.nhnacademy.minidooraygateway.config.UrlProperties;
 import com.nhnacademy.minidooraygateway.task.dto.GetTaskDto;
 import com.nhnacademy.minidooraygateway.task.dto.milestone.GetMilestoneDto;
 import com.nhnacademy.minidooraygateway.task.dto.milestone.ReqMilestoneDto;
 import com.nhnacademy.minidooraygateway.task.dto.milestone.RespMilestoneDto;
+import com.nhnacademy.minidooraygateway.task.dto.tag.ReqTagDto;
+import com.nhnacademy.minidooraygateway.task.dto.tag.RespTagDto;
 import com.nhnacademy.minidooraygateway.util.DefaultHttpHeader;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.ParameterizedTypeReference;
@@ -93,4 +93,80 @@ public class TaskAdaptor {
         restTemplate.delete(url);
     }
 
+    public List<GetTaskDto> getTags(Long projectId) {
+        HttpEntity<String> requestEntity = new HttpEntity<>(DefaultHttpHeader.getHeader());
+
+        ResponseEntity<List<GetTaskDto>> exchange =
+                restTemplate.exchange(urlProperties.getTags(),
+                        HttpMethod.GET,
+                        requestEntity,
+                        new ParameterizedTypeReference<>() {
+                        }, projectId);
+        return exchange.getBody();
+    }
+
+    public List<GetTaskDto> getTagsByTags(Long projectId, Long taskId) {
+        HttpEntity<String> requestEntity = new HttpEntity<>(DefaultHttpHeader.getHeader());
+
+        ResponseEntity<List<GetTaskDto>> exchange =
+                restTemplate.exchange(urlProperties.getTagsByTags(),
+                        HttpMethod.GET,
+                        requestEntity,
+                        new ParameterizedTypeReference<>() {
+                        }, projectId, taskId);
+        return exchange.getBody();
+    }
+
+    public RespTagDto createTag(ReqTagDto reqTagDto, Long projectId) {
+        HttpEntity<ReqTagDto> requestEntity = new HttpEntity<>(reqTagDto, DefaultHttpHeader.getHeader());
+
+        ResponseEntity<RespTagDto> exchange =
+                restTemplate.exchange(urlProperties.createTag(),
+                        HttpMethod.POST,
+                        requestEntity,
+                        new ParameterizedTypeReference<>() {
+                        }, projectId);
+        return exchange.getBody();
+    }
+
+    public RespTagDto modifyTag(RespTagDto respTagDto, Long projectId, Long tagId) {
+        HttpEntity<RespTagDto> requestEntity = new HttpEntity<>(respTagDto, DefaultHttpHeader.getHeader());
+
+        ResponseEntity<RespTagDto> exchange =
+                restTemplate.exchange(urlProperties.modifyTag(),
+                        HttpMethod.PUT,
+                        requestEntity,
+                        new ParameterizedTypeReference<>() {
+                        }, projectId, tagId);
+        return exchange.getBody();
+    }
+
+    public void deleteTag(Long tagId) {
+        String url = UriComponentsBuilder.fromUriString(urlProperties.deleteTag())
+                .buildAndExpand(tagId)
+                .toUriString();
+        restTemplate.delete(url);
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
