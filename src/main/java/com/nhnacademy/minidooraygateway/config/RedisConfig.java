@@ -1,34 +1,29 @@
 package com.nhnacademy.minidooraygateway.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.BeanClassLoaderAware;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.repository.configuration.EnableRedisRepositories;
 import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.security.jackson2.SecurityJackson2Modules;
 
-@EnableRedisRepositories
-@RequiredArgsConstructor
 @Configuration
-@PropertySource("classpath:redis.properties")
 public class RedisConfig implements BeanClassLoaderAware {
+
     @Value("${spring.redis.host}")
     private String host;
     @Value("${spring.redis.port}")
     private int port;
     @Value("${spring.redis.password}")
     private String password;
-    @Value("${spring.redis.database}")
+    @Value("${spring.redis.db}")
     private int database;
     private ClassLoader classLoader;
 
