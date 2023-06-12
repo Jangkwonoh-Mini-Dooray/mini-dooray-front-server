@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="'Project'"></title>
+</head>
+<body>
+<!--<th:block th:include="fragments/heading" />-->
+<h1 th:text="'Project'"></h1>
+<table>
+    <caption></caption>
+    <thead>
+    <tr class="table_title">
+        <td th:text="'no'"></td>
+        <td th:text="'name'"></td>
+        <td th:text="'status'"></td>
+        <td th:text="'description'"></td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each=" item, i : ${projectList}">
+        <td th:text="${item.getProjectId()}"></td>
+        <td th:text="${item.getName()}"></td>
+        <td th:text="${item.getProjectStatusName()}"></td>
+        <td th:text="${item.getDescription()}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

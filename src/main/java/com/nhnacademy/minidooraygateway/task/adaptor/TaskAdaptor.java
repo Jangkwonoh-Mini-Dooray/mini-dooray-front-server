@@ -5,6 +5,7 @@ import com.nhnacademy.minidooraygateway.task.dto.GetTaskDto;
 import com.nhnacademy.minidooraygateway.task.dto.milestone.GetMilestoneDto;
 import com.nhnacademy.minidooraygateway.task.dto.milestone.ReqMilestoneDto;
 import com.nhnacademy.minidooraygateway.task.dto.milestone.RespMilestoneDto;
+import com.nhnacademy.minidooraygateway.task.dto.project.GetProjectDto;
 import com.nhnacademy.minidooraygateway.task.dto.tag.ReqTagDto;
 import com.nhnacademy.minidooraygateway.task.dto.tag.RespTagDto;
 import com.nhnacademy.minidooraygateway.util.DefaultHttpHeader;
@@ -25,7 +26,18 @@ public class TaskAdaptor {
     private final RestTemplate restTemplate;
     private final UrlProperties urlProperties;
 
-    // project Id 로 전체 task 조회
+    public List<GetProjectDto> getProjectsByMemberId(String memberId) {
+        HttpEntity<String> requestEntity = new HttpEntity<>(DefaultHttpHeader.getHeader());
+
+        ResponseEntity<List<GetProjectDto>> exchange =
+                restTemplate.exchange(urlProperties.getProjectByMemberId(),
+                        HttpMethod.GET,
+                        requestEntity,
+                        new ParameterizedTypeReference<>() {
+                        }, memberId);
+        return exchange.getBody();
+    }
+
     public List<GetTaskDto> getTasks(Long projectId) {
         HttpEntity<String> requestEntity = new HttpEntity<>(DefaultHttpHeader.getHeader());
 
