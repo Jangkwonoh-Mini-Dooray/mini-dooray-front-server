@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="'Task'"></title>
+</head>
+<body>
+<!--<th:block th:include="fragments/heading" />-->
+<h1 th:text="'Task'"></h1>
+
+<table>
+    <caption></caption>
+    <thead>
+    <tr class="table_title">
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each=" item, i : ${taskList}">
+        <td th:text="${item.taskId}"></td>
+        <td th:text="${item.taskWriterMemberId}"></td>
+        <td th:text="${item.milestone.getName()}"></td>
+        <td th:text="${item.getTitle()}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<!--<div class="page">-->
+<!--    <a th:href="@{./(page=${residentPage.getNumber - 1} , size=${residentPage.getSize}  )}"-->
+<!--       th:if="${residentPage.getNumber gt 0 }" th:text="#{prev}"></a>-->
+<!--    <span th:text="${residentPage.getNumber+1}"/>/<span th:text="${residentPage.getTotalPages}"/>-->
+<!--    <a th:href="@{./(page=${residentPage.getNumber+1} , size=${residentPage.getSize}  )}"-->
+<!--       th:if="${residentPage.getNumber lt residentPage.getTotalPages - 1}" th:text="#{next}"></a>-->
+<!--</div>-->
+
+</body>
+</html>
