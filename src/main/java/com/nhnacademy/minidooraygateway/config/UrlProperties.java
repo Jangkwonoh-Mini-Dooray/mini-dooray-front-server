@@ -14,6 +14,9 @@ public class UrlProperties {
     public String getMember() {
         return accountUrl + "/members/{member-id}";
     }
+    public String getMemberByEmail() {
+        return accountUrl + "/members/{email}";
+    }
     public String createMember() {
         return accountUrl + "/members";
     }
@@ -23,6 +26,7 @@ public class UrlProperties {
     public String deleteMember() {
         return accountUrl + "/members/{member-id}";
     }
+
 
     public String getMemberAuthority() {
         return accountUrl + "/members/{member-id}/authority";
@@ -38,13 +42,13 @@ public class UrlProperties {
     }
 
 
-
     public String getTask() {
         return taskUrl + "/projects/{project-id}/posts";
     }
     public String getTaskByTaskId() {
         return taskUrl + "/projects/{project-id}/posts/{task-id}";
     }
+
 
     public String getMilestones() {
         return taskUrl + "/milestones/projects/{project-id}";
@@ -61,6 +65,24 @@ public class UrlProperties {
     public String deleteMilestone() {
         return taskUrl + "/milestones/{milestone-id}";
     }
+
+
+    public String getTags() {
+        return taskUrl + "/projects/{project-id}/tags";
+    }
+    public String getTagsByTags() {
+        return taskUrl + "/projects/{project-id}/tags/{task-id}";
+    }
+    public String createTag() {
+        return taskUrl + "/projects/{project-id}/tags";
+    }
+    public String modifyTag() {
+        return taskUrl + "/projects/{project-id}/tags/{tag-id}";
+    }
+    public String deleteTag() {
+        return taskUrl + "/projects/tags/{tag-id}";
+    }
+
 
 
 }
