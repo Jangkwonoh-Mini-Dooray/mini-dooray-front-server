@@ -17,4 +17,22 @@ public class UrlProperties {
     public String getTaskByTaskId() {
         return taskUrl + "/projects/{project-id}/posts/{task-id}";
     }
+
+    public String getMilestones() {
+        return taskUrl + "/milestones/projects/{project-id}";
+    }
+    public String getMilestone() {
+        return taskUrl + "/milestones/{milestone-id}";
+    }
+    public String createMilestone() {
+        return taskUrl + "/milestones/projects/{project-id}";
+    }
+    public String modifyMilestone() {
+        return taskUrl + "/milestones/{milestone-id}";
+    }
+    public String deleteMilestone() {
+        return taskUrl + "/milestones/{milestone-id}";
+    }
+
+
 }

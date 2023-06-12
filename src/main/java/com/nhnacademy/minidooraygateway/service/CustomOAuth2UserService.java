@@ -54,6 +54,7 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
         return new User("hi");
     }
 
+
     private static String getPrimaryEmail(List<OAuth2GitEmail> response) {
         return response.stream()
                 .filter(OAuth2GitEmail::getPrimary)
@@ -61,5 +62,4 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
                 .orElseThrow()
                 .getEmail();
     }
-
 }
