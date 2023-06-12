@@ -7,7 +7,7 @@
 <body>
 <h1 th:text="'sign up'"></h1>
 <div class="log-container">
-  <form th:method="post" th:action="@{/account/sign-up}">
+  <form th:method="post" th:action="@{/account/signup}">
     <p><input type="text" name="memberId" th:attr="placeholder='ID'"  />
 <!--    <p th:each="item : ${#fields.errors('id')}" th:text="${item}" class="error-message" />-->
     </p>

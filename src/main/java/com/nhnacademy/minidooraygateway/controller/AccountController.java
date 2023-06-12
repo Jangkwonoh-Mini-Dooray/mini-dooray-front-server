@@ -17,20 +17,14 @@ import javax.validation.Valid;
 public class AccountController {
     private final AccountAdaptor accountAdaptor;
 
-    @GetMapping("/sign-up")
+    @GetMapping("/signup")
     public String signUpForm() {
         return "account/signup";
     }
 
-    @PostMapping("/sign-up")
+    @PostMapping("/signup")
     public String doSignUp(@ModelAttribute @Valid PostMemberDto postMemberDto) {
         accountAdaptor.createMember(postMemberDto);
-        return "account/test";
-    }
-
-    // 회원가입, 로그인 성공 확인용 test
-    @GetMapping("/test")
-    public String test() {
-        return "account/test";
+        return "redirect:/login";
     }
 }
