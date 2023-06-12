@@ -1,5 +1,7 @@
 package com.nhnacademy.minidooraygateway.config;
 
+
+import com.nhnacademy.minidooraygateway.service.CustomOAuth2UserService;
 import com.nhnacademy.minidooraygateway.service.CustomUserDetailsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -11,8 +13,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.oauth2.client.CommonOAuth2Provider;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.oauth2.client.InMemoryOAuth2AuthorizedClientService;
-import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService;
 import org.springframework.security.oauth2.client.registration.ClientRegistration;
 import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
 import org.springframework.security.oauth2.client.registration.InMemoryClientRegistrationRepository;
@@ -22,7 +22,8 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @RequiredArgsConstructor
 public class SecurityConfig {
-    private final OAuth2Properties oAuth2Properties;
+    private final CustomOAuth2UserService customOAuth2UserService;
+//    private final OAuth2Properties oAuth2Properties;
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.formLogin(f -> f
@@ -40,8 +41,8 @@ public class SecurityConfig {
                         .frameOptions()
                         .sameOrigin())
                 .oauth2Login(o -> o
-                        .clientRegistrationRepository(clientRegistrationRepository())
-                        .authorizedClientService(auth2AuthorizedClientService()))
+                        .userInfoEndpoint()
+                        .userService(customOAuth2UserService))
                 .build();
     }
 
@@ -53,27 +54,9 @@ public class SecurityConfig {
 
         return authenticationProvider;
     }
-
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder(16);
     }
 
-    @Bean
-    public OAuth2AuthorizedClientService auth2AuthorizedClientService() {
-        return new InMemoryOAuth2AuthorizedClientService(clientRegistrationRepository());
-    }
-
-    @Bean
-    public ClientRegistrationRepository clientRegistrationRepository() {
-        return new InMemoryClientRegistrationRepository(github());
-    }
-
-    private ClientRegistration github() {
-        return CommonOAuth2Provider.GITHUB.getBuilder("github")
-                .clientId(oAuth2Properties.getClientId())
-                .clientSecret(oAuth2Properties.getClientPassword())
-                .userNameAttributeName("email")
-                .build();
-    }
 }
