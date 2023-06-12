@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title th:text="'Mini Dooray! Project'"></title>
+</head>
+<body>
+<h1 th:text="'Project'"></h1>
+<p>Welcome, <span th:text="${#authentication.name}"></span>!</p>
+<a href="/projects/" + ${#authentication.name}></a>
+<a th:href="@{'/projects/' + ${#authentication.name}}">Go to My Project</a>
+</body>
+</html>
