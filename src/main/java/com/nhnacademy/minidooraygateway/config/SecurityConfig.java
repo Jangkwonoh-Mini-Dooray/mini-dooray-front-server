@@ -1,6 +1,5 @@
 package com.nhnacademy.minidooraygateway.config;
 
-import ch.qos.logback.core.net.server.Client;
 import com.nhnacademy.minidooraygateway.service.CustomUserDetailsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;

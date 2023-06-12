@@ -1,7 +1,5 @@
 package com.nhnacademy.minidooraygateway.task.adaptor;
 
-import com.nhnacademy.minidooraygateway.account.dto.member.PutMemberDto;
-import com.nhnacademy.minidooraygateway.account.dto.member.RespMemberDto;
 import com.nhnacademy.minidooraygateway.config.UrlProperties;
 import com.nhnacademy.minidooraygateway.task.dto.GetTaskDto;
 import com.nhnacademy.minidooraygateway.task.dto.milestone.GetMilestoneDto;
