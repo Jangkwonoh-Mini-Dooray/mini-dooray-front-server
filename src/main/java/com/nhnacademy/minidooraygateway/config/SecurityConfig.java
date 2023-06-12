@@ -1,6 +1,7 @@
 package com.nhnacademy.minidooraygateway.config;
 
 
+import com.nhnacademy.minidooraygateway.filter.OAuthEmailLoginFailureFilter;
 import com.nhnacademy.minidooraygateway.service.CustomOAuth2UserService;
 import com.nhnacademy.minidooraygateway.service.CustomUserDetailsService;
 import lombok.RequiredArgsConstructor;
@@ -10,12 +11,9 @@ import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.oauth2.client.CommonOAuth2Provider;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.oauth2.client.registration.ClientRegistration;
-import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
-import org.springframework.security.oauth2.client.registration.InMemoryClientRegistrationRepository;
+import org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter;
 import org.springframework.security.web.SecurityFilterChain;
 
 @EnableWebSecurity
@@ -42,6 +40,7 @@ public class SecurityConfig {
                 .oauth2Login(o -> o
                         .userInfoEndpoint()
                         .userService(customOAuth2UserService))
+                .addFilterBefore(new OAuthEmailLoginFailureFilter(), OAuth2AuthorizationRequestRedirectFilter.class)
                 .build();
     }
 
