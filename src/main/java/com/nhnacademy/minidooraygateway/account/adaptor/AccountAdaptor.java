@@ -30,7 +30,7 @@ public class AccountAdaptor {
         HttpEntity<String> requestEntity = new HttpEntity<>(DefaultHttpHeader.getHeader());
 
         ResponseEntity<GetMemberDto> exchange =
-                restTemplate.exchange(urlProperties.getAccountServerUrl() + "/members/" + memberId,
+                restTemplate.exchange(urlProperties.getAccountUrl() + "/members/" + memberId,
                         HttpMethod.GET,
                         requestEntity,
                         new ParameterizedTypeReference<>() {
@@ -43,7 +43,7 @@ public class AccountAdaptor {
         HttpEntity<PostMemberDto> requestEntity = new HttpEntity<>(postMemberDto, DefaultHttpHeader.getHeader());
 
         ResponseEntity<RespMemberDto> exchange =
-                restTemplate.exchange(urlProperties.getAccountServerUrl() + "/members",
+                restTemplate.exchange(urlProperties.getAccountUrl() + "/members",
                         HttpMethod.POST,
                         requestEntity,
                         new ParameterizedTypeReference<>() {
@@ -57,7 +57,7 @@ public class AccountAdaptor {
         HttpEntity<PutMemberDto> requestEntity = new HttpEntity<>(putMemberDto, DefaultHttpHeader.getHeader());
 
         ResponseEntity<RespMemberDto> exchange =
-                restTemplate.exchange(urlProperties.getAccountServerUrl() + "/members/" + memberId,
+                restTemplate.exchange(urlProperties.getAccountUrl() + "/members/" + memberId,
                         HttpMethod.PUT,
                         requestEntity,
                         new ParameterizedTypeReference<>() {
@@ -66,14 +66,14 @@ public class AccountAdaptor {
     }
 
     public void deleteMember(String memberId) {
-        restTemplate.delete(urlProperties.getAccountServerUrl() + "/members/" + memberId);
+        restTemplate.delete(urlProperties.getAccountUrl() + "/members/" + memberId);
     }
 
     public GetMemberAuthorityDto getMemberAuthority(String memberId) {
         HttpEntity<String> requestEntity = new HttpEntity<>(DefaultHttpHeader.getHeader());
 
         ResponseEntity<GetMemberAuthorityDto> exchange =
-                restTemplate.exchange(urlProperties.getAccountServerUrl() + "/members/" + memberId + "/authority",
+                restTemplate.exchange(urlProperties.getAccountUrl() + "/members/" + memberId + "/authority",
                         HttpMethod.GET,
                         requestEntity,
                         new ParameterizedTypeReference<>() {
@@ -84,7 +84,7 @@ public class AccountAdaptor {
     public void updateMemberAuthority(String memberId, PutMemberAuthorityDto putMemberAuthorityDto) {
         HttpEntity<PutMemberAuthorityDto> requestEntity = new HttpEntity<>(putMemberAuthorityDto, DefaultHttpHeader.getHeader());
 
-        restTemplate.exchange(urlProperties.getAccountServerUrl() + "/members/" + memberId + "/authority",
+        restTemplate.exchange(urlProperties.getAccountUrl() + "/members/" + memberId + "/authority",
                 HttpMethod.PUT,
                 requestEntity,
                 new ParameterizedTypeReference<Void>() {
@@ -95,7 +95,7 @@ public class AccountAdaptor {
         HttpEntity<String> requestEntity = new HttpEntity<>(DefaultHttpHeader.getHeader());
 
         ResponseEntity<GetMemberStatusDto> exchange =
-                restTemplate.exchange(urlProperties.getAccountServerUrl() + "/members/" + memberId + "/status",
+                restTemplate.exchange(urlProperties.getAccountUrl() + "/members/" + memberId + "/status",
                         HttpMethod.GET,
                         requestEntity,
                         new ParameterizedTypeReference<GetMemberStatusDto>() {
@@ -106,7 +106,7 @@ public class AccountAdaptor {
     public void updateMemberStatus(String memberId, PutMemberStatusDto putMemberStatusDto) {
         HttpEntity<PutMemberStatusDto> requestEntity = new HttpEntity<>(putMemberStatusDto, DefaultHttpHeader.getHeader());
 
-        restTemplate.exchange(urlProperties.getAccountServerUrl() + "/members/" + memberId + "/status",
+        restTemplate.exchange(urlProperties.getAccountUrl() + "/members/" + memberId + "/status",
                 HttpMethod.PUT,
                 requestEntity,
                 new ParameterizedTypeReference<Void>() {
