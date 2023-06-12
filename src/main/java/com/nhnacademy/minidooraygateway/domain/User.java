@@ -26,7 +26,6 @@ import java.util.Map;
 public class User implements OAuth2User, UserDetails {
     private String memberId;
     private String password;
-    private Long accountId;
     private boolean accountNonExpired;
     private boolean accountNonLocked;
     private boolean credentialsNonExpired;
@@ -52,10 +51,9 @@ public class User implements OAuth2User, UserDetails {
     public String getName() {
         return memberId;
     }
-    public User(String memberId, String password, Long accountId) {
+    public User(String memberId, String password) {
         this.memberId = memberId;
         this.password = password;
-        this.accountId = accountId;
         attributes = new HashMap<>();
         accountNonExpired = true;
         accountNonLocked = true;

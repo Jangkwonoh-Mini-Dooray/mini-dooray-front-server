@@ -1,8 +1,11 @@
 package com.nhnacademy.minidooraygateway.service;
 
+import com.nhnacademy.minidooraygateway.account.adaptor.AccountAdaptor;
+import com.nhnacademy.minidooraygateway.account.dto.member.GetMemberDto;
 import com.nhnacademy.minidooraygateway.config.UrlProperties;
 import com.nhnacademy.minidooraygateway.domain.OAuth2GitEmail;
 import com.nhnacademy.minidooraygateway.domain.User;
+import com.nhnacademy.minidooraygateway.util.DefaultHttpHeader;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.ParameterizedTypeReference;
@@ -45,9 +48,8 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
         String email = getPrimaryEmail(body);
 
         log.error("email : {}",email);
-
-
-        return null;
+        GetMemberDto dto  = getMemberByEmail(email);
+        return new User(dto.getMemberId(), dto.getPassword());
     }
 
 
@@ -57,5 +59,17 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
                 .findAny()
                 .orElseThrow()
                 .getEmail();
+    }
+
+    public GetMemberDto getMemberByEmail(String email) {
+        HttpEntity<String> requestEntity = new HttpEntity<>(DefaultHttpHeader.getHeader());
+
+        ResponseEntity<GetMemberDto> exchange =
+                restTemplate.exchange(urlProperties.getMemberByEmail(),
+                        HttpMethod.GET,
+                        requestEntity,
+                        new ParameterizedTypeReference<>() {
+                        }, email);
+        return exchange.getBody();
     }
 }
