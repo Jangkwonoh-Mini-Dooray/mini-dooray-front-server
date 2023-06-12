@@ -1,11 +1,8 @@
 package com.nhnacademy.minidooraygateway.service;
 
-import com.nhnacademy.minidooraygateway.account.dto.member.GetMemberDto;
-import com.nhnacademy.minidooraygateway.config.OAuth2Properties;
 import com.nhnacademy.minidooraygateway.config.UrlProperties;
 import com.nhnacademy.minidooraygateway.domain.OAuth2GitEmail;
 import com.nhnacademy.minidooraygateway.domain.User;
-import com.nhnacademy.minidooraygateway.util.DefaultHttpHeader;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.ParameterizedTypeReference;
@@ -34,7 +31,7 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
         HttpHeaders header = new HttpHeaders();
         header.setAccept(List.of(MediaType.valueOf("application/vnd.github+json")));
-        header.setBasicAuth(userRequest.getAccessToken().getTokenValue());
+        header.setBearerAuth(userRequest.getAccessToken().getTokenValue());
         header.set("X-GitHub-Api-Version", "2022-11-28");
         HttpEntity<List<OAuth2GitEmail>> requestEntity = new HttpEntity<>(header);
 
@@ -50,7 +47,7 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
         log.error("email : {}",email);
 
 
-        return new User("hi", null);
+        return null;
     }
 
 
