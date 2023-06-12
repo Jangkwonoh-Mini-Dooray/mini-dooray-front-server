@@ -19,7 +19,8 @@ public class RedisConfig implements BeanClassLoaderAware {
 
     @Value("${spring.redis.host}")
     private String host;
-    @Value("${spring.redis.port}")
+    @Value("${spring.red" +
+            "is.port}")
     private int port;
     @Value("${spring.redis.password}")
     private String password;

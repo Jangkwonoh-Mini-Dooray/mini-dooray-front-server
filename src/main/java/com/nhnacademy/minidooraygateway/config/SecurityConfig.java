@@ -73,7 +73,6 @@ public class SecurityConfig {
         return CommonOAuth2Provider.GITHUB.getBuilder("github")
                 .clientId(oAuth2Properties.getClientId())
                 .clientSecret(oAuth2Properties.getClientPassword())
-                .userNameAttributeName("email")
                 .build();
     }
 }

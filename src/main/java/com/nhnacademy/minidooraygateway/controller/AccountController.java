@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
+import java.security.Principal;
 
 @Controller
 @RequestMapping("/account")
@@ -23,7 +24,7 @@ public class AccountController {
     }
 
     @PostMapping("/signup")
-    public String doSignUp(@ModelAttribute @Valid PostMemberDto postMemberDto) {
+    public String doSignUp(@ModelAttribute @Valid PostMemberDto postMemberDto, Principal principal) {
         accountAdaptor.createMember(postMemberDto);
         return "redirect:/login";
     }
