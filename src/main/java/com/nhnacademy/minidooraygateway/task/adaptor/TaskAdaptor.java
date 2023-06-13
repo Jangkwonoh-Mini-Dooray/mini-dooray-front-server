@@ -33,6 +33,18 @@ public class TaskAdaptor {
     private final RestTemplate restTemplate;
     private final UrlProperties urlProperties;
 
+    public List<GetProjectDto> getProjectsByMemberId(String memberId) {
+        HttpEntity<String> requestEntity = new HttpEntity<>(DefaultHttpHeader.getHeader());
+
+        ResponseEntity<List<GetProjectDto>> exchange =
+                restTemplate.exchange(urlProperties.getProjectByMemberId(),
+                        HttpMethod.GET,
+                        requestEntity,
+                        new ParameterizedTypeReference<>() {
+                        }, memberId);
+        return exchange.getBody();
+    }
+
     public List<Project> getProjects() {
         HttpEntity<String> requestEntity = new HttpEntity<>(DefaultHttpHeader.getHeader());
 

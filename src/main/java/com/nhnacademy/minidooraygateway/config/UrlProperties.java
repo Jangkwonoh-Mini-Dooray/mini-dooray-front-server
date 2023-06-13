@@ -41,7 +41,9 @@ public class UrlProperties {
         return accountUrl + "/members/{member-id}/status";
     }
 
-
+    public String getProjectByMemberId() {
+        return taskUrl + "/projects/list/{member-id}";
+    }
     public String getProjects() {
         return taskUrl + "/projects";
     }
