@@ -24,4 +24,6 @@ public class TaskController {
         model.addAttribute("taskList", taskList);
         return "task/list";
     }
+
+
 }

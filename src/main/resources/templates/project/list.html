@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title th:text="'Project'"></title>
+    <link rel="stylesheet" href="/resources/css/default.css"/>
 </head>
 <body>
-<!--<th:block th:include="fragments/heading" />-->
+<th:block th:include="fragments/header" />
 <h1 th:text="'Project'"></h1>
 <table>
     <caption></caption>
@@ -20,7 +21,7 @@
     <tbody>
     <tr th:each=" item, i : ${projectList}">
         <td th:text="${item.getProjectId()}"></td>
-        <td th:text="${item.getName()}"></td>
+        <td><a th:href="@{/projects/{projectId}/posts(projectId=${item.getProjectId()})}" th:text="${item.getName()}"></a></td>
         <td th:text="${item.getProjectStatusName()}"></td>
         <td th:text="${item.getDescription()}"></td>
     </tr>
