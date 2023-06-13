@@ -14,6 +14,8 @@ import com.nhnacademy.minidooraygateway.task.dto.project.RespProjectDto;
 import com.nhnacademy.minidooraygateway.task.dto.project.authority.ProjectAuthorityDto;
 import com.nhnacademy.minidooraygateway.task.dto.project.authority.ProjectAuthorityIdDto;
 import com.nhnacademy.minidooraygateway.task.dto.project.authority.ProjectAuthorityNameDto;
+import com.nhnacademy.minidooraygateway.task.dto.project.member.ReqProjectMemberDto;
+import com.nhnacademy.minidooraygateway.task.dto.project.member.RespProjectMemberDto;
 import com.nhnacademy.minidooraygateway.task.dto.project.status.ProjectStatusDto;
 import com.nhnacademy.minidooraygateway.task.dto.project.status.ProjectStatusIdDto;
 import com.nhnacademy.minidooraygateway.task.dto.project.status.ProjectStatusNameDto;
@@ -55,6 +57,7 @@ public class TaskAdaptor {
                         }, memberId);
         return exchange.getBody();
     }
+
 
     public List<Project> getProjects() {
         HttpEntity<String> requestEntity = new HttpEntity<>(DefaultHttpHeader.getHeader());
@@ -109,6 +112,54 @@ public class TaskAdaptor {
 
         ResponseEntity<Response> exchange =
                 restTemplate.exchange(urlProperties.deleteProject(),
+                        HttpMethod.DELETE,
+                        requestEntity,
+                        new ParameterizedTypeReference<>() {
+                        }, projectId);
+        return exchange.getBody();
+    }
+
+    public RespProjectMemberDto getProjectMembers(Long projectId) {
+        HttpEntity<String> requestEntity = new HttpEntity<>(DefaultHttpHeader.getHeader());
+
+        ResponseEntity<RespProjectMemberDto> exchange =
+                restTemplate.exchange(urlProperties.getProjectMembers(),
+                        HttpMethod.GET,
+                        requestEntity,
+                        new ParameterizedTypeReference<>() {
+                        }, projectId);
+        return exchange.getBody();
+    }
+
+    public Response addProjectMembers(Long projectId, List<RespProjectMemberDto> respProjectMemberDtoList) {
+        HttpEntity<List<RespProjectMemberDto>> requestEntity = new HttpEntity<>(respProjectMemberDtoList, DefaultHttpHeader.getHeader());
+
+        ResponseEntity<Response> exchange =
+                restTemplate.exchange(urlProperties.addProjectMembers(),
+                        HttpMethod.POST,
+                        requestEntity,
+                        new ParameterizedTypeReference<>() {
+                        }, projectId);
+        return exchange.getBody();
+    }
+
+    public Response modifyProjectMembers(Long projectId, List<RespProjectMemberDto> respProjectMemberDtoList) {
+        HttpEntity<List<RespProjectMemberDto>> requestEntity = new HttpEntity<>(respProjectMemberDtoList, DefaultHttpHeader.getHeader());
+
+        ResponseEntity<Response> exchange =
+                restTemplate.exchange(urlProperties.modifyProjectMembers(),
+                        HttpMethod.PUT,
+                        requestEntity,
+                        new ParameterizedTypeReference<>() {
+                        }, projectId);
+        return exchange.getBody();
+    }
+
+    public Response deleteProjectMembers(Long projectId, List<ReqProjectMemberDto> reqProjectMemberDtoList) {
+        HttpEntity<List<ReqProjectMemberDto>> requestEntity = new HttpEntity<>(reqProjectMemberDtoList, DefaultHttpHeader.getHeader());
+
+        ResponseEntity<Response> exchange =
+                restTemplate.exchange(urlProperties.deleteProjectMembers(),
                         HttpMethod.DELETE,
                         requestEntity,
                         new ParameterizedTypeReference<>() {
