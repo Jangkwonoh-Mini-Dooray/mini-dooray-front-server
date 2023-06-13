@@ -41,6 +41,7 @@ public class UrlProperties {
         return accountUrl + "/members/{member-id}/status";
     }
 
+
     public String getProjectByMemberId() {
         return taskUrl + "/projects/list/{member-id}";
     }
@@ -58,6 +59,20 @@ public class UrlProperties {
     }
     public String deleteProject() {
         return taskUrl + "/projects/{project-id}";
+    }
+
+
+    public String getProjectMembers() {
+        return taskUrl + "/projects/{project-id}/members";
+    }
+    public String addProjectMembers() {
+        return taskUrl + "/projects/{project-id}/members";
+    }
+    public String modifyProjectMembers() {
+        return taskUrl + "/projects/{project-id}/members";
+    }
+    public String deleteProjectMembers() {
+        return taskUrl + "/projects/{project-id}/members";
     }
 
 
