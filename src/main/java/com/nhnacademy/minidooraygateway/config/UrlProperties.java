@@ -61,6 +61,41 @@ public class UrlProperties {
     }
 
 
+    public String getProjectAuthorities() {
+        return taskUrl + "/project-authority";
+    }
+    public String getProjectAuthority() {
+        return taskUrl + "/project-authority/{projectAuthorityId}";
+    }
+    public String createProjectAuthority() {
+        return taskUrl + "/project-authority";
+    }
+    public String updateProjectAuthority() {
+        return taskUrl + "/project-authority/{projectAuthorityId}";
+    }
+    public String deleteProjectAuthority() {
+        return taskUrl + "/project-authority/{projectAuthorityId}";
+    }
+
+
+    public String getProjectStatuses() {
+        return taskUrl + "/project-status";
+    }
+    public String getProjectStatus() {
+        return taskUrl + "/project-status/{projectStatusId}";
+    }
+    public String createProjectStatus() {
+        return taskUrl + "/project-status";
+    }
+    public String updateProjectStatus() {
+        return taskUrl + "/project-status/{projectStatusId}";
+    }
+    public String deleteProjectStatus() {
+        return taskUrl + "/project-status/{projectStatusId}";
+    }
+
+
+
     public String getTasks() {
         return taskUrl + "/projects/{project-id}/posts";
     }
@@ -110,6 +145,9 @@ public class UrlProperties {
     public String deleteTag() {
         return taskUrl + "/projects/tags/{tag-id}";
     }
+
+
+
 
 
 
