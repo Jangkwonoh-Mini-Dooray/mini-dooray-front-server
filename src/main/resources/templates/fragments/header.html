@@ -8,11 +8,11 @@
   </div>
 
   <div id="header-info" class="header-box">
-    <span id="user-name" sec:authentication="name"/>&nbsp;
-<!--    <span th:text="#{welcome}"/>&nbsp;&nbsp;-->
-    <a class="btn_a" href="/auth/logout">
-<!--      <button th:text="#{logout}"></button>-->
-    </a>
+    <form method="post" action="/logout">
+      <span id="user-welcome" th:text="'Welcome,'"/>&nbsp;&nbsp;
+      <span id="user-name" sec:authentication="name"/>&nbsp;
+      <button type=submit id="btn-logout" th:text="'logout'"></button>
+    </form>
   </div>
 </div>
 <br/>
