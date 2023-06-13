@@ -1,7 +1,7 @@
 package com.nhnacademy.minidooraygateway.controller;
 
 import com.nhnacademy.minidooraygateway.task.adaptor.TaskAdaptor;
-import com.nhnacademy.minidooraygateway.task.dto.GetTaskDto;
+import com.nhnacademy.minidooraygateway.task.dto.task.GetTaskDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
