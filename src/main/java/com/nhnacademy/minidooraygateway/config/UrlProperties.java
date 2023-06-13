@@ -147,8 +147,30 @@ public class UrlProperties {
     }
 
 
+    public String getComments() {
+        return taskUrl + "/task/{task-id}/comments";
+    }
+    public String postComment() {
+        return taskUrl + "/task/{task-id}/comments";
+    }
+    public String putComment() {
+        return taskUrl + "/task/comments/{comment-id}";
+    }
+    public String deleteComment() {
+        return taskUrl + "/task/comments/{comment-id}";
+    }
 
 
-
-
+    public String getCommentMentions() {
+        return taskUrl + "/mentions/{comment-id}";
+    }
+    public String createCommentMention() {
+        return taskUrl + "/mentions/{comment-id}";
+    }
+    public String modifyCommentMention() {
+        return taskUrl + "/mentions/{comment-id}";
+    }
+    public String deleteCommentMention() {
+        return taskUrl + "/mentions/{comment-id}";
+    }
 }

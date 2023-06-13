@@ -9,8 +9,8 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class GetCommentDto {
-    private Long commentId;
+public class ReqCommentDto {
     private String commentWriterMemberId;
     private String comment;
 }
+

@@ -2,8 +2,12 @@ package com.nhnacademy.minidooraygateway.task.adaptor;
 
 import com.nhnacademy.minidooraygateway.config.UrlProperties;
 import com.nhnacademy.minidooraygateway.task.domain.Project;
-import com.nhnacademy.minidooraygateway.task.domain.ProjectStatus;
 import com.nhnacademy.minidooraygateway.task.domain.Response;
+import com.nhnacademy.minidooraygateway.task.dto.comment.GetCommentDto;
+import com.nhnacademy.minidooraygateway.task.dto.comment.ReqCommentDto;
+import com.nhnacademy.minidooraygateway.task.dto.comment.RespCommentDto;
+import com.nhnacademy.minidooraygateway.task.dto.comment.mention.ReqCommentMentionDto;
+import com.nhnacademy.minidooraygateway.task.dto.comment.mention.RespCommentMentionDto;
 import com.nhnacademy.minidooraygateway.task.dto.project.GetProjectDto;
 import com.nhnacademy.minidooraygateway.task.dto.project.ReqProjectDto;
 import com.nhnacademy.minidooraygateway.task.dto.project.RespProjectDto;
@@ -101,7 +105,7 @@ public class TaskAdaptor {
     }
 
     public Response deleteProject(Long projectId) {
-        HttpEntity<ReqProjectDto> requestEntity = new HttpEntity<>(DefaultHttpHeader.getHeader());
+        HttpEntity<String> requestEntity = new HttpEntity<>(DefaultHttpHeader.getHeader());
 
         ResponseEntity<Response> exchange =
                 restTemplate.exchange(urlProperties.deleteProject(),
@@ -275,7 +279,7 @@ public class TaskAdaptor {
     }
 
     public Response deleteTag(Long tagId) {
-        HttpEntity<ReqProjectDto> requestEntity = new HttpEntity<>(DefaultHttpHeader.getHeader());
+        HttpEntity<String> requestEntity = new HttpEntity<>(DefaultHttpHeader.getHeader());
         ResponseEntity<Response> exchange =
                 restTemplate.exchange(urlProperties.deleteTag(),
                         HttpMethod.DELETE,
@@ -403,18 +407,100 @@ public class TaskAdaptor {
         restTemplate.exchange(url, HttpMethod.DELETE, entity, Void.class);
     }
 
+    public List<GetCommentDto> getComments(Long id) {
+        HttpEntity<String> requestEntity = new HttpEntity<>(DefaultHttpHeader.getHeader());
 
+        ResponseEntity<List<GetCommentDto>> exchange =
+                restTemplate.exchange(urlProperties.getComments(),
+                        HttpMethod.GET,
+                        requestEntity,
+                        new ParameterizedTypeReference<>() {
+                        }, id);
+        return exchange.getBody();
+    }
+
+    public RespCommentDto postComment(ReqCommentDto reqCommentDto, Long id) {
+        HttpEntity<ReqCommentDto> requestEntity = new HttpEntity<>(reqCommentDto, DefaultHttpHeader.getHeader());
+
+        ResponseEntity<RespCommentDto> exchange =
+                restTemplate.exchange(urlProperties.postComment(),
+                        HttpMethod.POST,
+                        requestEntity,
+                        new ParameterizedTypeReference<>() {
+                        }, id);
+        return exchange.getBody();
+    }
+
+    public RespCommentDto putComment(ReqCommentDto reqCommentDto, Long id) {
+        HttpEntity<ReqCommentDto> requestEntity = new HttpEntity<>(reqCommentDto, DefaultHttpHeader.getHeader());
+
+        ResponseEntity<RespCommentDto> exchange =
+                restTemplate.exchange(urlProperties.putComment(),
+                        HttpMethod.PUT,
+                        requestEntity,
+                        new ParameterizedTypeReference<>() {
+                        }, id);
+        return exchange.getBody();
+    }
+
+    public Response deleteComment(Long id) {
+        HttpEntity<String> requestEntity = new HttpEntity<>(DefaultHttpHeader.getHeader());
+        ResponseEntity<Response> exchange =
+                restTemplate.exchange(urlProperties.deleteComment(),
+                        HttpMethod.DELETE,
+                        requestEntity,
+                        new ParameterizedTypeReference<>() {
+                        }, id);
+        return exchange.getBody();
+    }
+
+    public List<RespCommentMentionDto> getCommentMentions(Long commentId) {
+        HttpEntity<String> requestEntity = new HttpEntity<>(DefaultHttpHeader.getHeader());
+
+        ResponseEntity<List<RespCommentMentionDto>> exchange =
+                restTemplate.exchange(urlProperties.getComments(),
+                        HttpMethod.GET,
+                        requestEntity,
+                        new ParameterizedTypeReference<>() {
+                        }, commentId);
+        return exchange.getBody();
+    }
+
+    public Response createCommentMention(Long commentId, ReqCommentMentionDto reqCommentMentionDto) {
+        HttpEntity<ReqCommentMentionDto> requestEntity = new HttpEntity<>(reqCommentMentionDto, DefaultHttpHeader.getHeader());
+
+        ResponseEntity<Response> exchange =
+                restTemplate.exchange(urlProperties.createCommentMention(),
+                        HttpMethod.POST,
+                        requestEntity,
+                        new ParameterizedTypeReference<>() {
+                        }, commentId);
+        return exchange.getBody();
+    }
+
+    public Response modifyCommentMention(Long commentId, ReqCommentMentionDto reqCommentMentionDto) {
+        HttpEntity<ReqCommentMentionDto> requestEntity = new HttpEntity<>(reqCommentMentionDto, DefaultHttpHeader.getHeader());
+
+        ResponseEntity<Response> exchange =
+                restTemplate.exchange(urlProperties.modifyCommentMention(),
+                        HttpMethod.PUT,
+                        requestEntity,
+                        new ParameterizedTypeReference<>() {
+                        }, commentId);
+        return exchange.getBody();
+    }
+
+    public Response deleteCommentMention(Long commentId, ReqCommentMentionDto reqCommentMentionDto) {
+        HttpEntity<ReqCommentMentionDto> requestEntity = new HttpEntity<>(reqCommentMentionDto, DefaultHttpHeader.getHeader());
+        ResponseEntity<Response> exchange =
+                restTemplate.exchange(urlProperties.deleteCommentMention(),
+                        HttpMethod.DELETE,
+                        requestEntity,
+                        new ParameterizedTypeReference<>() {
+                        }, commentId);
+        return exchange.getBody();
+    }
 }
-
-
-
-
-
-
-
-
-
-
 
 
 
