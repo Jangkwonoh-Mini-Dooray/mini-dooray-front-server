@@ -11,8 +11,8 @@
 	<groupId>com.nhnacademy</groupId>
 	<artifactId>mini-dooray-gateway</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>mini-dooray-gateway</name>
-	<description>Mini Dooray Gateway</description>
+	<name>mini-dooray-front-server</name>
+	<description>Mini Dooray Front Server</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>

@@ -23,7 +23,8 @@ public class SecurityConfig {
     private final CustomOAuth2UserService customOAuth2UserService;
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http.formLogin(f -> f
+        return http
+                .formLogin(f -> f
                     .usernameParameter("memberId")
                     .passwordParameter("password")
                         .defaultSuccessUrl("/projects"))

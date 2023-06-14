@@ -17,7 +17,7 @@ import java.util.List;
 public class TaskController {
     private final TaskAdaptor taskAdaptor;
 
-    @GetMapping
+    @GetMapping("{project-id}")
     public String getTasks(Model model,
                            @PathVariable("project-id") Long projectId) {
         List<GetTaskDto> taskList = taskAdaptor.getTasks(projectId);

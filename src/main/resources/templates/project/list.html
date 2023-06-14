@@ -4,9 +4,31 @@
     <meta charset="UTF-8">
     <title th:text="'Project'"></title>
     <link rel="stylesheet" href="/css/default.css"/>
+<!--    <link rel="stylesheet" href="/css/menu.css" />-->
+    <link rel="stylesheet" href="/css/main.css" />
 </head>
 <body>
 <th:block th:include="fragments/header" />
+<!--<th:block th:include="fragments/menu" />-->
+
+<div id="main-container">
+    <div id="icon-menu-container">
+        <div><a><img class="icon" src="/img/home.png" /></a></div>
+        <div><a th:href="@{'/projects/' + ${#authentication.name}}"><img class="icon" src="/img/task.png" /></a></div>
+        <div><a><img class="icon" src="/img/account.png"/></a></div>
+    </div>
+    <div id="project-list-container">
+        <div th:each=" item, i : ${projectList}">
+            <div><a th:href="@{/tasks/{projectId}(projectId=${item.getProjectId()})}" th:text="${item.getName()}"></a></div>
+        </div>
+    </div>
+    <div id="task-list-container">
+        <div>
+            
+        </div>
+    </div>
+</div>
+
 <h1 th:text="'Project'"></h1>
 <table>
     <caption></caption>
@@ -21,7 +43,7 @@
     <tbody>
     <tr th:each=" item, i : ${projectList}">
         <td th:text="${item.getProjectId()}"></td>
-        <td><a th:href="@{/projects/{projectId}/posts(projectId=${item.getProjectId()})}" th:text="${item.getName()}"></a></td>
+        <td><a th:href="@{/tasks/{projectId}(projectId=${item.getProjectId()})}" th:text="${item.getName()}"></a></td>
         <td th:text="${item.getProjectStatusName()}"></td>
         <td th:text="${item.getDescription()}"></td>
     </tr>
