@@ -2,6 +2,7 @@ package com.nhnacademy.minidooraygateway.controller;
 
 import com.nhnacademy.minidooraygateway.account.adaptor.AccountAdaptor;
 import com.nhnacademy.minidooraygateway.account.dto.member.PostMemberDto;
+import com.nhnacademy.minidooraygateway.account.service.AccountService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,10 +14,10 @@ import javax.validation.Valid;
 import java.security.Principal;
 
 @Controller
-@RequestMapping("/account")
+@RequestMapping("/accounts")
 @RequiredArgsConstructor
 public class AccountController {
-    private final AccountAdaptor accountAdaptor;
+    private final AccountService accountService;
 
     @GetMapping("/login")
     public String loginForm() {
@@ -30,7 +31,7 @@ public class AccountController {
 
     @PostMapping("/signup")
     public String doSignUp(@ModelAttribute @Valid PostMemberDto postMemberDto, Principal principal) {
-        accountAdaptor.createMember(postMemberDto);
+        accountService.createMember(postMemberDto);
         return "redirect:/login";
     }
 }

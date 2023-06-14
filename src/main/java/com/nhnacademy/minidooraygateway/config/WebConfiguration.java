@@ -11,7 +11,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import java.time.Duration;
 
 @Configuration
-@EnableConfigurationProperties({UrlProperties.class, TaskUrlProperties.class})
+@EnableConfigurationProperties({UrlProperties.class})
 public class WebConfiguration implements WebMvcConfigurer {
     @Bean
     public RestTemplate restTemplate(RestTemplateBuilder builder) {

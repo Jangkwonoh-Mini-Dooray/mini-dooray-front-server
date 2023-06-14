@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="'새 업무'"></title>
+    <link rel="stylesheet" href="/css/default.css"/>
+</head>
+<body>
+<div class="log-container">
+    <form th:method="post" th:action="@{${action}}" th:object="${reqTaskDto}">
+        <p><input type="text" name="taskWriterMemberId" th:attr="placeholder='제목을 입력해 주세요.'"
+                  th:field="*{taskWriterMemberId}"/>
+            <!--    <p th:each="item : ${#fields.errors('id')}" th:text="${item}" class="error-message" />-->
+        </p>
+        <p><input type="password" name="password" th:attr="placeholder='Password'"/>
+            <!--    <p th:each="item : ${#fields.errors('password')}" th:text="${item}" class="error-message" />-->
+        <p><input type="email" name="email" th:attr="placeholder='Email'"/>
+            <!--    <p  th:if="${not #strings.isEmpty(message)}" th:text="${message}" class="error-message" ></p>-->
+        <p><input type="text" name="name" th:attr="placeholder='Name'"/>
+        <p>
+            <button type="submit" th:text="'sign up'"></button>
+        </p>
+    </form>
+</div>
+</body>
+</html>

@@ -18,6 +18,7 @@
         <div><a><img class="icon" src="/img/account.png"/></a></div>
     </div>
     <div id="project-list-container">
+        <div id="add-task-btn" th:href=""></div>
         <div th:each=" item, i : ${projectList}">
             <div><a th:href="@{/tasks/{projectId}(projectId=${item.getProjectId()})}" th:text="${item.getName()}"></a></div>
         </div>
