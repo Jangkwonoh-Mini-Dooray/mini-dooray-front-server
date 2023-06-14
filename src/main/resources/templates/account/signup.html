@@ -3,9 +3,10 @@
 <head>
   <title th:text="'sign up'"></title>
   <link rel="stylesheet" href="/css/default.css"/>
+  <link rel="stylesheet" href="/css/signup.css"/>
 </head>
 <body>
-<h1 th:text="'sign up'"></h1>
+<h1 th:text="'회원가입'"></h1>
 <div class="log-container">
   <form th:method="post" th:action="@{/account/signup}">
     <p><input type="text" name="memberId" th:attr="placeholder='ID'"  />

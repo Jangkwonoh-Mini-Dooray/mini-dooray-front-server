@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title th:text="'Mini Dooray! | Project'"></title>
+  <link rel="stylesheet" href="/css/default.css"/>
+  <style>
+    button {
+      border-radius: 15px;
+      border: none;
+      margin-top: 15px;
+      height: 40px;
+      width: 250px;
+      color: white;
+      background: #0542AE;
+    }
+  </style>
+</head>
+<body>
+<h1 th:text="'Welcome Mini Dooray!'"></h1>
+<p><span class="name" th:text="${#authentication.name}"></span><span th:text="' 님, 성공적으로 로그인에 성공하였습니다.'"></span></p>
+<div><a th:href="@{'/projects/' + ${#authentication.name}}"><button th:text="'Mini Dooray! 시작하기'"></button></a></div>
+</body>
+</html>

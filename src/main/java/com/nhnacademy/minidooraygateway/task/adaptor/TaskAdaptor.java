@@ -19,6 +19,7 @@ import com.nhnacademy.minidooraygateway.task.dto.project.member.RespProjectMembe
 import com.nhnacademy.minidooraygateway.task.dto.project.status.ProjectStatusDto;
 import com.nhnacademy.minidooraygateway.task.dto.project.status.ProjectStatusIdDto;
 import com.nhnacademy.minidooraygateway.task.dto.project.status.ProjectStatusNameDto;
+import com.nhnacademy.minidooraygateway.task.dto.tag.GetTagDto;
 import com.nhnacademy.minidooraygateway.task.dto.task.GetTaskDto;
 import com.nhnacademy.minidooraygateway.task.dto.milestone.GetMilestoneDto;
 import com.nhnacademy.minidooraygateway.task.dto.milestone.ReqMilestoneDto;
@@ -281,10 +282,10 @@ public class TaskAdaptor {
         restTemplate.delete(url);
     }
 
-    public List<GetTaskDto> getTags(Long projectId) {
+    public List<GetTagDto> getTags(Long projectId) {
         HttpEntity<String> requestEntity = new HttpEntity<>(DefaultHttpHeader.getHeader());
 
-        ResponseEntity<List<GetTaskDto>> exchange =
+        ResponseEntity<List<GetTagDto>> exchange =
                 restTemplate.exchange(urlProperties.getTags(),
                         HttpMethod.GET,
                         requestEntity,
@@ -293,10 +294,10 @@ public class TaskAdaptor {
         return exchange.getBody();
     }
 
-    public List<GetTaskDto> getTagsByTags(Long projectId, Long taskId) {
+    public List<GetTagDto> getTagsByTags(Long projectId, Long taskId) {
         HttpEntity<String> requestEntity = new HttpEntity<>(DefaultHttpHeader.getHeader());
 
-        ResponseEntity<List<GetTaskDto>> exchange =
+        ResponseEntity<List<GetTagDto>> exchange =
                 restTemplate.exchange(urlProperties.getTagsByTags(),
                         HttpMethod.GET,
                         requestEntity,
@@ -317,10 +318,10 @@ public class TaskAdaptor {
         return exchange.getBody();
     }
 
-    public RespTagDto modifyTag(RespTagDto respTagDto, Long projectId, Long tagId) {
-        HttpEntity<RespTagDto> requestEntity = new HttpEntity<>(respTagDto, DefaultHttpHeader.getHeader());
+    public ReqTagDto modifyTag(ReqTagDto reqTagDto, Long projectId, Long tagId) {
+        HttpEntity<ReqTagDto> requestEntity = new HttpEntity<>(reqTagDto, DefaultHttpHeader.getHeader());
 
-        ResponseEntity<RespTagDto> exchange =
+        ResponseEntity<ReqTagDto> exchange =
                 restTemplate.exchange(urlProperties.modifyTag(),
                         HttpMethod.PUT,
                         requestEntity,

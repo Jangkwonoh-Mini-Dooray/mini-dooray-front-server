@@ -1,0 +1,30 @@
+h1 {
+    color: #0542AE;
+    font-size: 30px;
+}
+
+.title-name {
+    font-size: 18px;
+    color: #0542AE;
+    font-weight: bold;
+}
+
+input {
+    margin-top: 15px;
+    width: 250px;
+    height: 40px;
+    border-radius: 15px;
+    padding-left: 20px;
+}
+
+button {
+    border-radius: 15px;
+    border: none;
+    margin-top: 15px;
+    height: 40px;
+    width: 150px;
+    color: white;
+    background: #0542AE;
+}
+
+

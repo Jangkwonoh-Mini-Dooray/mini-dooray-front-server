@@ -7,12 +7,11 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class GetTaskDto {
     private Long taskId;
     private String taskWriterMemberId;
-    private Milestone milestone;
+    private Long milestoneId;
     private String title;
 }

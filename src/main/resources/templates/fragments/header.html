@@ -4,7 +4,7 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <div id="header-container" class sec:authorize="isAuthenticated()">
   <div id="header-title">
-    <a id="a-header-title-name" href="/projects/list"><span id="header-title-name" class="header-box" th:text="'Mini Dooray!'"></span></a>
+    <a id="a-header-title-name" th:href="@{'/projects/' + ${#authentication.name}}"><span id="header-title-name" class="header-box" th:text="'Mini Dooray!'"></span></a>
   </div>
 
   <div id="header-info" class="header-box">
