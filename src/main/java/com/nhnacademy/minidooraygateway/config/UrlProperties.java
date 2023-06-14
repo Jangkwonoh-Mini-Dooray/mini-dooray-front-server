@@ -4,188 +4,187 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-@ConfigurationProperties(prefix = "backend.server")
+@ConfigurationProperties(prefix = "gateway.server")
 @Getter
 @Setter
 public class UrlProperties {
-    private String accountUrl;
-    private String taskUrl;
+    private String url;
 
     public String getMember() {
-        return accountUrl + "/members/{member-id}";
+        return url + "/members/{member-id}";
     }
     public String getMemberByEmail() {
-        return accountUrl + "/members/email/{email}";
+        return url + "/members/email/{email}";
     }
     public String createMember() {
-        return accountUrl + "/members";
+        return url + "/members";
     }
     public String updateMember() {
-        return accountUrl + "/members/{member-id}";
+        return url + "/members/{member-id}";
     }
     public String deleteMember() {
-        return accountUrl + "/members/{member-id}";
+        return url + "/members/{member-id}";
     }
 
 
     public String getMemberAuthority() {
-        return accountUrl + "/members/{member-id}/authority";
+        return url + "/members/{member-id}/authority";
     }
     public String updateMemberAuthority() {
-        return accountUrl + "/members/{member-id}/authority";
+        return url + "/members/{member-id}/authority";
     }
     public String getMemberStatus() {
-        return accountUrl + "/members/{member-id}/status";
+        return url + "/members/{member-id}/status";
     }
     public String updateMemberStatus() {
-        return accountUrl + "/members/{member-id}/status";
+        return url + "/members/{member-id}/status";
     }
 
 
     public String getProjectByMemberId() {
-        return taskUrl + "/projects/list/{member-id}";
+        return url + "/projects/list/{member-id}";
     }
     public String getProjects() {
-        return taskUrl + "/projects";
+        return url + "/projects";
     }
     public String getProject() {
-        return taskUrl + "/projects/{project-id}";
+        return url + "/projects/{project-id}";
     }
     public String createProject() {
-        return taskUrl + "/projects";
+        return url + "/projects";
     }
     public String modifyProject() {
-        return taskUrl + "/projects/{project-id}";
+        return url + "/projects/{project-id}";
     }
     public String deleteProject() {
-        return taskUrl + "/projects/{project-id}";
+        return url + "/projects/{project-id}";
     }
 
 
     public String getProjectMembers() {
-        return taskUrl + "/projects/{project-id}/members";
+        return url + "/projects/{project-id}/members";
     }
     public String addProjectMembers() {
-        return taskUrl + "/projects/{project-id}/members";
+        return url + "/projects/{project-id}/members";
     }
     public String modifyProjectMembers() {
-        return taskUrl + "/projects/{project-id}/members";
+        return url + "/projects/{project-id}/members";
     }
     public String deleteProjectMembers() {
-        return taskUrl + "/projects/{project-id}/members";
+        return url + "/projects/{project-id}/members";
     }
 
 
     public String getProjectAuthorities() {
-        return taskUrl + "/project-authority";
+        return url + "/project-authority";
     }
     public String getProjectAuthority() {
-        return taskUrl + "/project-authority/{projectAuthorityId}";
+        return url + "/project-authority/{projectAuthorityId}";
     }
     public String createProjectAuthority() {
-        return taskUrl + "/project-authority";
+        return url + "/project-authority";
     }
     public String updateProjectAuthority() {
-        return taskUrl + "/project-authority/{projectAuthorityId}";
+        return url + "/project-authority/{projectAuthorityId}";
     }
     public String deleteProjectAuthority() {
-        return taskUrl + "/project-authority/{projectAuthorityId}";
+        return url + "/project-authority/{projectAuthorityId}";
     }
 
 
     public String getProjectStatuses() {
-        return taskUrl + "/project-status";
+        return url + "/project-status";
     }
     public String getProjectStatus() {
-        return taskUrl + "/project-status/{projectStatusId}";
+        return url + "/project-status/{projectStatusId}";
     }
     public String createProjectStatus() {
-        return taskUrl + "/project-status";
+        return url + "/project-status";
     }
     public String updateProjectStatus() {
-        return taskUrl + "/project-status/{projectStatusId}";
+        return url + "/project-status/{projectStatusId}";
     }
     public String deleteProjectStatus() {
-        return taskUrl + "/project-status/{projectStatusId}";
+        return url + "/project-status/{projectStatusId}";
     }
 
 
 
     public String getTasks() {
-        return taskUrl + "/projects/{project-id}/posts";
+        return url + "/projects/{project-id}/posts";
     }
     public String getTask() {
-        return taskUrl + "/projects/{project-id}/posts/{task-id}";
+        return url + "/projects/{project-id}/posts/{task-id}";
     }
     public String createTask() {
-        return taskUrl + "/projects/{project-id}/posts";
+        return url + "/projects/{project-id}/posts";
     }
     public String modifyTask() {
-        return taskUrl + "/projects/{project-id}/posts/{task-id}";
+        return url + "/projects/{project-id}/posts/{task-id}";
     }
     public String deleteTask() {
-        return taskUrl + "/projects/posts/{task-id}";
+        return url + "/projects/posts/{task-id}";
     }
 
 
     public String getMilestones() {
-        return taskUrl + "/milestones/projects/{project-id}";
+        return url + "/milestones/projects/{project-id}";
     }
     public String getMilestone() {
-        return taskUrl + "/milestones/{milestone-id}";
+        return url + "/milestones/{milestone-id}";
     }
     public String createMilestone() {
-        return taskUrl + "/milestones/projects/{project-id}";
+        return url + "/milestones/projects/{project-id}";
     }
     public String modifyMilestone() {
-        return taskUrl + "/milestones/{milestone-id}";
+        return url + "/milestones/{milestone-id}";
     }
     public String deleteMilestone() {
-        return taskUrl + "/milestones/{milestone-id}";
+        return url + "/milestones/{milestone-id}";
     }
 
 
     public String getTags() {
-        return taskUrl + "/projects/{project-id}/tags";
+        return url + "/projects/{project-id}/tags";
     }
     public String getTagsByTags() {
-        return taskUrl + "/projects/{project-id}/tags/{task-id}";
+        return url + "/projects/{project-id}/tags/{task-id}";
     }
     public String createTag() {
-        return taskUrl + "/projects/{project-id}/tags";
+        return url + "/projects/{project-id}/tags";
     }
     public String modifyTag() {
-        return taskUrl + "/projects/{project-id}/tags/{tag-id}";
+        return url + "/projects/{project-id}/tags/{tag-id}";
     }
     public String deleteTag() {
-        return taskUrl + "/projects/tags/{tag-id}";
+        return url + "/projects/tags/{tag-id}";
     }
 
 
     public String getComments() {
-        return taskUrl + "/task/{task-id}/comments";
+        return url + "/task/{task-id}/comments";
     }
     public String postComment() {
-        return taskUrl + "/task/{task-id}/comments";
+        return url + "/task/{task-id}/comments";
     }
     public String putComment() {
-        return taskUrl + "/task/comments/{comment-id}";
+        return url + "/task/comments/{comment-id}";
     }
     public String deleteComment() {
-        return taskUrl + "/task/comments/{comment-id}";
+        return url + "/task/comments/{comment-id}";
     }
 
 
     public String getCommentMentions() {
-        return taskUrl + "/mentions/{comment-id}";
+        return url + "/mentions/{comment-id}";
     }
     public String createCommentMention() {
-        return taskUrl + "/mentions/{comment-id}";
+        return url + "/mentions/{comment-id}";
     }
     public String modifyCommentMention() {
-        return taskUrl + "/mentions/{comment-id}";
+        return url + "/mentions/{comment-id}";
     }
     public String deleteCommentMention() {
-        return taskUrl + "/mentions/{comment-id}";
+        return url + "/mentions/{comment-id}";
     }
 }
