@@ -2,6 +2,8 @@ package com.nhnacademy.minidooraygateway.controller;
 
 import com.nhnacademy.minidooraygateway.task.adaptor.TaskAdaptor;
 import com.nhnacademy.minidooraygateway.task.dto.project.GetProjectDto;
+import com.nhnacademy.minidooraygateway.task.dto.task.GetTaskDto;
+import com.nhnacademy.minidooraygateway.task.service.TaskService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,19 +17,26 @@ import java.util.List;
 @RequestMapping("/projects")
 @RequiredArgsConstructor
 public class ProjectController {
-    private final TaskAdaptor taskAdaptor;
+    private final TaskService taskService;
 
     @GetMapping
-    public String main() {
-        return "project/main";
+    public String welcomePage() {
+        return "project/welcome";
     }
 
-    @GetMapping("{member-id}")
-    public String getProjects(Model model,
+    @GetMapping("/{member-id}")
+    public String main(Model model,
                            @PathVariable("member-id") String memberId) {
-        List<GetProjectDto> projectList = taskAdaptor.getProjectsByMemberId(memberId);
+        List<GetProjectDto> projectList = taskService.getProjectsByMemberId(memberId);
         model.addAttribute("projectList", projectList);
-        return "project/list";
+        Long defaultProjectId = projectList.get(0).getProjectId();
+        GetProjectDto project = taskService.getProject(defaultProjectId);
+        model.addAttribute("defaultProjectId", defaultProjectId);
+        List<GetTaskDto> defaultTaskList = taskService.getTasks(defaultProjectId);
+        model.addAttribute("defaultTaskList", defaultTaskList);
+        model.addAttribute("projectName", project.getName());
+
+        return "project/main";
     }
 
 

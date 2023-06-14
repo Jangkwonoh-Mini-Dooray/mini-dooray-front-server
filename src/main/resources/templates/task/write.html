@@ -1,25 +1,33 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title th:text="'새 업무'"></title>
+    <title th:text="'Mini Dooray! | 새 업무'"></title>
     <link rel="stylesheet" href="/css/default.css"/>
+    <link rel="stylesheet" href="/css/main.css"/>
+    <link rel="stylesheet" href="/css/write.css"/>
 </head>
 <body>
-<div class="log-container">
-    <form th:method="post" th:action="@{${action}}" th:object="${reqTaskDto}">
-        <p><input type="text" name="taskWriterMemberId" th:attr="placeholder='제목을 입력해 주세요.'"
-                  th:field="*{taskWriterMemberId}"/>
-            <!--    <p th:each="item : ${#fields.errors('id')}" th:text="${item}" class="error-message" />-->
-        </p>
-        <p><input type="password" name="password" th:attr="placeholder='Password'"/>
-            <!--    <p th:each="item : ${#fields.errors('password')}" th:text="${item}" class="error-message" />-->
-        <p><input type="email" name="email" th:attr="placeholder='Email'"/>
-            <!--    <p  th:if="${not #strings.isEmpty(message)}" th:text="${message}" class="error-message" ></p>-->
-        <p><input type="text" name="name" th:attr="placeholder='Name'"/>
-        <p>
-            <button type="submit" th:text="'sign up'"></button>
-        </p>
-    </form>
+<th:block th:include="fragments/header"/>
+
+<div id="main-container">
+    <div id="icon-menu-container">
+        <div><a><img class="icon" src="/img/home.png"/></a></div>
+        <div><a th:href="@{'/projects/' + ${#authentication.name}}"><img class="icon" src="/img/task.png"/></a></div>
+        <div><a><img class="icon" src="/img/account.png"/></a></div>
+    </div>
+    <div class="write-container">
+        <form th:method="post" th:action="@{${action}}" th:object="${reqTaskDto}">
+            <div><input type="hidden" name="milestoneId" th:value="2"
+                   th:field="*{milestoneId}"/></div>
+            <div><input type="text" name="title" th:attr="placeholder='제목을 입력해주세요.'"
+                   th:field="*{title}"/></div>
+            <div><input type="text" name="taskWriterMemberId" th:placeholder="${#authentication.name}"
+                   th:field="*{taskWriterMemberId}" /></div>
+            <div><textarea name="content" th:attr="placeholder='내용을 입력해주세요.'" th:field="*{content}"></textarea></div>
+            <div><button class="write-btn" type="submit" th:text="'저장'"></button></div>
+        </form>
+    </div>
 </div>
+
 </body>
 </html>
