@@ -16,17 +16,22 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter;
 import org.springframework.security.web.SecurityFilterChain;
 
-@EnableWebSecurity
+//@EnableWebSecurity
 @Configuration
 @RequiredArgsConstructor
 public class SecurityConfig {
     private final CustomOAuth2UserService customOAuth2UserService;
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
+                .authorizeRequests(e -> e
+                        .antMatchers("/redirect-index").authenticated()
+                        .antMatchers("/**").permitAll())
                 .formLogin(f -> f
-                    .usernameParameter("memberId")
-                    .passwordParameter("password")
+                        .usernameParameter("id")
+                        .passwordParameter("pw")
+                        .loginPage("/account/login")
                         .defaultSuccessUrl("/projects"))
                 .logout().and()
                 .csrf().disable()
@@ -39,9 +44,11 @@ public class SecurityConfig {
                         .frameOptions()
                         .sameOrigin())
                 .oauth2Login(o -> o
+                        //.loginPage("/account/login")
+                        .defaultSuccessUrl("/projects")
                         .userInfoEndpoint()
                         .userService(customOAuth2UserService))
-                .addFilterBefore(new OAuthEmailLoginFailureFilter(), OAuth2AuthorizationRequestRedirectFilter.class)
+//                .addFilterBefore(new OAuthEmailLoginFailureFilter(), OAuth2AuthorizationRequestRedirectFilter.class)
                 .build();
     }
 
@@ -53,6 +60,7 @@ public class SecurityConfig {
 
         return authenticationProvider;
     }
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder(16);

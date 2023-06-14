@@ -20,8 +20,8 @@ public class WebConfiguration implements WebMvcConfigurer {
                 .setConnectTimeout(Duration.ofSeconds(3L))
                 .build();
     }
-//    @Override
-//    public void addViewControllers(ViewControllerRegistry registry) {
-//        registry.addRedirectViewController("/redirect-index", "/");
-//    }
+    @Override
+    public void addViewControllers(ViewControllerRegistry registry) {
+        registry.addRedirectViewController("/redirect-index", "/");
+    }
 }
