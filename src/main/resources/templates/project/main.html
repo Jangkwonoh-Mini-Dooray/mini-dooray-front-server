@@ -27,14 +27,14 @@
     </div>
     <div id="task-list-container">
         <div class="task-list-menu" th:each=" item, i : ${defaultTaskList}">
-            <a th:href="@{'/tasks/views/' + ${item.getTaskId()}}">
+<!--            <a th:href="@{'/tasks/views/' + ${item.getTaskId()}}">-->
                 <div class="task-list-menu-title" th:text="${item.getTitle()}"></div>
                 <div class="task-list-menu-info">
                     <span class="task-list-menu-project" th:text="${projectName}"></span>
                     <span class="task-list-menu-writer" th:text="'|'"></span>
                     <span class="task-list-menu-writer" th:text="${item.taskWriterMemberId}"></span>
                 </div>
-            </a>
+<!--            </a>-->
         </div>
     </div>
 </div>
