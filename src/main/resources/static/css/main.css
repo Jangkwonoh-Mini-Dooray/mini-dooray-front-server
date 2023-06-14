@@ -1,0 +1,46 @@
+#main-container {
+    width: 100%;
+    height: 1000px;
+    display: flex;
+}
+
+#main-container > div {
+    height: 1000px;
+}
+
+#icon-menu-container {
+    width: 5%;
+    background: #EDEBE7;
+    border-right-width: 1px;
+    border-right-color: #313030;
+}
+
+.icon {
+    width: 30px;
+    height: 30px;
+    margin-top: 20px;
+}
+
+#project-list-container {
+    width: 18%;
+    overflow: scroll;
+}
+
+#project-list-container > div {
+    padding-top: 20px;
+    height: 40px;
+    padding-left: 15px;
+    font-size: 16px;
+    text-align: left;
+}
+
+#project-list-container > div:hover {
+    cursor: pointer;
+    background: #EDEBE7;
+}
+
+#task-list-container {
+    width: 77%;
+    background: black;
+    overflow: scroll;
+}

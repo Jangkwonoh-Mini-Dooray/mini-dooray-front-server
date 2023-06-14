@@ -18,6 +18,11 @@ import java.security.Principal;
 public class AccountController {
     private final AccountAdaptor accountAdaptor;
 
+    @GetMapping("/login")
+    public String loginForm() {
+        return "login/login";
+    }
+
     @GetMapping("/signup")
     public String signUpForm() {
         return "account/signup";
