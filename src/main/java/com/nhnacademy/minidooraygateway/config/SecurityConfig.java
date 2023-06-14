@@ -31,7 +31,7 @@ public class SecurityConfig {
                 .formLogin(f -> f
                         .usernameParameter("id")
                         .passwordParameter("pw")
-                        .loginPage("/account/login")
+                        .loginPage("/login")
                         .defaultSuccessUrl("/projects"))
                 .logout().and()
                 .csrf().disable()
@@ -44,7 +44,7 @@ public class SecurityConfig {
                         .frameOptions()
                         .sameOrigin())
                 .oauth2Login(o -> o
-                        //.loginPage("/account/login")
+                        .loginPage("/login")
                         .defaultSuccessUrl("/projects")
                         .userInfoEndpoint()
                         .userService(customOAuth2UserService))
