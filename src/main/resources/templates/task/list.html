@@ -26,7 +26,7 @@
     </div>
     <div id="task-list-container">
         <div class="task-list-menu" th:each=" item, i : ${taskList}">
-<!--            <a th:href="@{'/tasks/views/' + ${item.getTaskId()}}">-->
+            <a th:href="@{'/tasks/views/' + ${item.getTaskId()} + '/' + ${projectId} + '/' + ${#authentication.name}}">
                 <div class="task-list-menu-title" th:text="${item.getTitle()}"></div>
                 <div class="task-list-menu-info">
                     <span class="task-list-menu-project" th:text="${projectName}"></span>
