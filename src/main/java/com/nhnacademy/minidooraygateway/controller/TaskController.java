@@ -7,6 +7,7 @@ import com.nhnacademy.minidooraygateway.task.dto.task.GetTaskDto;
 import com.nhnacademy.minidooraygateway.task.dto.task.ReqTaskDto;
 import com.nhnacademy.minidooraygateway.task.service.TaskService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,12 +39,17 @@ public class TaskController {
         return "task/list";
     }
 
-    @GetMapping("/views/{task-id}")
+    @GetMapping("/views/{task-id}/{project-id}/{member-id}")
     public String getTask(Model model,
+                          @PathVariable("task-id") Long taskId,
                           @PathVariable("project-id") Long projectId,
-                          @PathVariable("task-id") Long taskId) {
+                          @PathVariable("member-id") String memberId) {
+        List<GetProjectDto> projectList = taskService.getProjectsByMemberId(memberId);
         GetTaskDto task = taskService.getTask(projectId, taskId);
+
+        model.addAttribute("projectList", projectList);
         model.addAttribute("task", task);
+
         return "task/view";
     }
 

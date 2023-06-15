@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="'Mini Dooray! | Project'"></title>
+    <link rel="stylesheet" href="/css/default.css"/>
+    <link rel="stylesheet" href="/css/main.css"/>
+</head>
+<body>
+<th:block th:include="fragments/header"/>
+
+<div id="main-container">
+    <div id="icon-menu-container">
+        <div><a><img class="icon" src="/img/home.png"/></a></div>
+        <div><a th:href="@{'/projects/' + ${#authentication.name}}"><img class="icon" src="/img/task.png"/></a></div>
+        <div><a><img class="icon" src="/img/account.png"/></a></div>
+    </div>
+    <div id="task-view-container">
+        <table>
+            <caption></caption>
+            <thead>
+            <tr class="table_title">
+                <th th:text="'작성자'"></th>
+                <th th:text="'제목'"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td th:text="${task.taskWriterMemberId}"></td>
+                <td th:text="${task.title}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

@@ -19,6 +19,7 @@ public interface TaskService {
     RespProjectDto createProject(ReqProjectDto postProjectDto);
     List<GetProjectDto> getProjectsByMemberId(String memberId);
     GetProjectDto getProject(Long projectId);
+    Response deleteProject(Long projectId);
     List<GetTaskDto> getTasks(Long projectId);
     GetTaskDto getTask(Long projectId, Long taskId);
 

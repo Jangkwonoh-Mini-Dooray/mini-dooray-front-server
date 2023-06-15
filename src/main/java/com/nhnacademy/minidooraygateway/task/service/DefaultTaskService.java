@@ -40,6 +40,11 @@ public class DefaultTaskService implements TaskService {
     }
 
     @Override
+    public Response deleteProject(Long projectId) {
+        return taskAdaptor.deleteProject(projectId);
+    }
+
+    @Override
     public List<GetTaskDto> getTasks(Long projectId) {
         return taskAdaptor.getTasks(projectId);
     }
