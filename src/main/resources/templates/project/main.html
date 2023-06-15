@@ -16,25 +16,30 @@
         <div><a><img class="icon" src="/img/account.png"/></a></div>
     </div>
     <div id="project-list-container">
-        <a th:href="@{/tasks/{defaultProjectId}/write(defaultProjectId=${defaultProjectId})}">
-            <div id="add-task-btn" th:text="'+ 새 업무'"></div>
-        </a>
-        <div class="project-list" th:each=" item, i : ${projectList}">
-            <a th:href="@{'/tasks/' + ${item.getProjectId()} + '/' + ${#authentication.name}}">
-                <div th:text="${item.getName()}"></div>
+        <div class="project-list" th:if="${#lists.isEmpty(projectList)}">
+            <p>프로젝트가 비었습니다.</p>
+        </div>
+        <div th:unless="${#lists.isEmpty(projectList)}">
+            <a th:href="@{/tasks/{defaultProjectId}/write(defaultProjectId=${defaultProjectId})}">
+                <div id="add-task-btn" th:text="'+ 새 업무'"></div>
             </a>
+            <div class="project-list" th:each=" item, i : ${projectList}">
+                <a th:href="@{'/tasks/' + ${item.getProjectId()} + '/' + ${#authentication.name}}">
+                    <div th:text="${item.getName()}"></div>
+                </a>
+            </div>
         </div>
     </div>
     <div id="task-list-container">
         <div class="task-list-menu" th:each=" item, i : ${defaultTaskList}">
-<!--            <a th:href="@{'/tasks/views/' + ${item.getTaskId()}}">-->
-                <div class="task-list-menu-title" th:text="${item.getTitle()}"></div>
-                <div class="task-list-menu-info">
-                    <span class="task-list-menu-project" th:text="${projectName}"></span>
-                    <span class="task-list-menu-writer" th:text="'|'"></span>
-                    <span class="task-list-menu-writer" th:text="${item.taskWriterMemberId}"></span>
-                </div>
-<!--            </a>-->
+            <!--            <a th:href="@{'/tasks/views/' + ${item.getTaskId()}}">-->
+            <div class="task-list-menu-title" th:text="${item.getTitle()}"></div>
+            <div class="task-list-menu-info">
+                <span class="task-list-menu-project" th:text="${projectName}"></span>
+                <span class="task-list-menu-writer" th:text="'|'"></span>
+                <span class="task-list-menu-writer" th:text="${item.taskWriterMemberId}"></span>
+            </div>
+            <!--            </a>-->
         </div>
     </div>
 </div>

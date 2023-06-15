@@ -67,7 +67,7 @@ public class TaskController {
                              ReqTagDto reqTagDto) {
         taskService.createTask(reqTaskDto, projectId);
 //        taskService.createTag(reqTagDto, projectId);
-        return "redirect:/tasks/" + projectId;
+        return "redirect:/tasks/" + projectId + "/" + reqTaskDto.getTaskWriterMemberId();
     }
 
 

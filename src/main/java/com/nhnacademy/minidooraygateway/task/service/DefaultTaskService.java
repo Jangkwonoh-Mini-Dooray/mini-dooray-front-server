@@ -7,6 +7,8 @@ import com.nhnacademy.minidooraygateway.task.dto.milestone.GetMilestoneDto;
 import com.nhnacademy.minidooraygateway.task.dto.milestone.ReqMilestoneDto;
 import com.nhnacademy.minidooraygateway.task.dto.milestone.RespMilestoneDto;
 import com.nhnacademy.minidooraygateway.task.dto.project.GetProjectDto;
+import com.nhnacademy.minidooraygateway.task.dto.project.ReqProjectDto;
+import com.nhnacademy.minidooraygateway.task.dto.project.RespProjectDto;
 import com.nhnacademy.minidooraygateway.task.dto.tag.GetTagDto;
 import com.nhnacademy.minidooraygateway.task.dto.tag.ReqTagDto;
 import com.nhnacademy.minidooraygateway.task.dto.tag.RespTagDto;
@@ -21,6 +23,11 @@ import java.util.List;
 @RequiredArgsConstructor
 public class DefaultTaskService implements TaskService {
     private final TaskAdaptor taskAdaptor;
+
+    @Override
+    public RespProjectDto createProject(ReqProjectDto postProjectDto) {
+        return taskAdaptor.createProject(postProjectDto);
+    }
 
     @Override
     public List<GetProjectDto> getProjectsByMemberId(String memberId) {
