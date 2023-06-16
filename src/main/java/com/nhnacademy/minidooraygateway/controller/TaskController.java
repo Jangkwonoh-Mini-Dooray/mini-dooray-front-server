@@ -1,5 +1,6 @@
 package com.nhnacademy.minidooraygateway.controller;
 
+import com.nhnacademy.minidooraygateway.task.dto.milestone.GetMilestoneDto;
 import com.nhnacademy.minidooraygateway.task.dto.milestone.ReqMilestoneDto;
 import com.nhnacademy.minidooraygateway.task.dto.project.GetProjectDto;
 import com.nhnacademy.minidooraygateway.task.dto.tag.ReqTagDto;
@@ -86,13 +87,16 @@ public class TaskController {
     @GetMapping("/milestones/{project-id}")
     public String  getMilestones(Model model,
                                  @PathVariable("project-id") Long projectId) {
-        taskService.getMilestones(projectId);
+        List<GetMilestoneDto> milestoneList = taskService.getMilestones(projectId);
+        model.addAttribute("milestoneList", milestoneList);
         return "milestone/list";
     }
 
     @GetMapping("/milestones/views/{milestone-id}")
-    public String getMilestone(@PathVariable("milestone-id") Long milestoneId) {
-        taskService.getMilestone(milestoneId);
+    public String getMilestone(Model model,
+                               @PathVariable("milestone-id") Long milestoneId) {
+        GetMilestoneDto milestone = taskService.getMilestone(milestoneId);
+        model.addAttribute("milestone", milestone);
         return "milestone/view";
     }
 
