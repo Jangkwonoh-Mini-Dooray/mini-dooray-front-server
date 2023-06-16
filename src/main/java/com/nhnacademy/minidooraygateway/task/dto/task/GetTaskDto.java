@@ -12,4 +12,5 @@ public class GetTaskDto {
     private String taskWriterMemberId;
     private Long milestoneId;
     private String title;
+    private String content;
 }
