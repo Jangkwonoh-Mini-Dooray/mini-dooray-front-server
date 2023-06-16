@@ -60,6 +60,11 @@ public class DefaultTaskService implements TaskService {
     }
 
     @Override
+    public void deleteTask(Long taskId) {
+        taskAdaptor.deleteTask(taskId);
+    }
+
+    @Override
     public void createTag(ReqTagDto reqTagDto, Long projectId) {
         taskAdaptor.createTag(reqTagDto, projectId);
     }

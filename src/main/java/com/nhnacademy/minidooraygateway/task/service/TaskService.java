@@ -24,6 +24,7 @@ public interface TaskService {
     GetTaskDto getTask(Long projectId, Long taskId);
 
     void createTask(ReqTaskDto reqTaskDto, Long projectId);
+    void deleteTask(Long taskId);
 
     void createTag(ReqTagDto reqTagDto, Long projectId);
 

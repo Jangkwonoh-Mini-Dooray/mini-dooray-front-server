@@ -10,10 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -49,6 +46,7 @@ public class TaskController {
 
         model.addAttribute("projectList", projectList);
         model.addAttribute("task", task);
+        model.addAttribute("deleteAction", "/tasks/" + taskId + "/" + projectId + "/" + memberId);
 
         return "task/view";
     }
@@ -76,5 +74,57 @@ public class TaskController {
         return "redirect:/tasks/" + projectId + "/" + reqTaskDto.getTaskWriterMemberId();
     }
 
+    @DeleteMapping("{task-id}/{project-id}/{member-id}")
+    public String deleteTask(Model model,
+                             @PathVariable("task-id") Long taskId,
+                             @PathVariable("project-id") Long projectId,
+                             @PathVariable("member-id") String memberId) {
+        taskService.deleteTask(taskId);
+        return "redirect:/tasks/" + projectId + "/" + memberId;
+    }
 
+    @GetMapping("/milestones/{project-id}")
+    public String  getMilestones(Model model,
+                                 @PathVariable("project-id") Long projectId) {
+        taskService.getMilestones(projectId);
+        return "milestone/list";
+    }
+
+    @GetMapping("/milestones/views/{milestone-id}")
+    public String getMilestone(@PathVariable("milestone-id") Long milestoneId) {
+        taskService.getMilestone(milestoneId);
+        return "milestone/view";
+    }
+
+    @GetMapping("/milestones/{project-id}/create")
+    public String createMilestoneForm(Model model,
+                                      @PathVariable("project-id") Long projectId) {
+        model.addAttribute("reqMilestoneDto", new ReqMilestoneDto());
+        model.addAttribute("action", "/milestone/" + projectId + "/create");
+        return "milestone/form";
+    }
+
+    @PostMapping("/milestones/{project-id}/create")
+    public String createMilestone(@PathVariable("project-id") Long projectId,
+                                  ReqMilestoneDto reqMilestoneDto) {
+        taskService.createMilestone(projectId, reqMilestoneDto);
+        return "redirect:/milestones/" + projectId;
+    }
+
+    @GetMapping("/milestones/{project-id}/modify/{milestone-id}")
+    public String modifyMilestoneForm(Model model,
+                                      @PathVariable("project-id") Long projectId,
+                                      @PathVariable("milestond-id") Long milestoneId) {
+        model.addAttribute("reqMilestoneDto", new ReqMilestoneDto());
+        model.addAttribute("action", "/milestones/" + projectId + "/modify/" + milestoneId);
+        return "milestone/form";
+    }
+
+    @PostMapping("/milestones/{project-id}/modify/{milestone-id}")
+    public String modifyMilestone(@PathVariable("project-id") Long projectId,
+                                  @PathVariable("milestone-id") Long milestoneId,
+                                  ReqMilestoneDto reqMilestoneDto) {
+        taskService.modifyMilestone(milestoneId, reqMilestoneDto);
+        return "redirect:/milestones/" + projectId;
+    }
 }
