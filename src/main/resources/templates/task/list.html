@@ -25,6 +25,8 @@
             </a></div>
     </div>
     <div id="task-list-container">
+        <a id="milestone-title" th:href="@{'/tasks/milestones/' + ${projectId}}" onclick="window.open('/tasks/milestones/' + [[${projectId}]])"><b id="milestone-menu" th:text="'마일스톤'"></b></a>
+
         <div class="task-list-menu" th:each=" item, i : ${taskList}">
             <a th:href="@{'/tasks/views/' + ${item.getTaskId()} + '/' + ${projectId} + '/' + ${#authentication.name}}">
                 <div class="task-list-menu-title" th:text="${item.getTitle()}"></div>
