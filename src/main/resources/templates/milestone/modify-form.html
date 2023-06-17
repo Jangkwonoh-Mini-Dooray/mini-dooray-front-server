@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="'Mini Dooray! | 마일스톤 수정'"></title>
+    <link rel="stylesheet" href="/css/default.css"/>
+    <link rel="stylesheet" href="/css/main.css"/>
+</head>
+<body>
+<th:block th:include="fragments/header"/>
+
+<div id="main-container">
+    <div id="icon-menu-container">
+        <div><a><img class="icon" src="/img/home.png"/></a></div>
+        <div><a th:href="@{'/projects/' + ${#authentication.name}}"><img class="icon" src="/img/task.png"/></a></div>
+        <div><a><img class="icon" src="/img/account.png"/></a></div>
+    </div>
+    <div>
+        <form th:method="put" th:action="@{${action}}" th:object="${reqMilestoneDto}">
+            <div><input type="text" name="name" th:attr="placeholder=${milestone.name}" th:field="*{name}" /></div>
+            <div><input type="date" name="startPeriod" th:attr="placeholder=${milestone.startPeriod}"
+                        th:field="*{startPeriod}"/></div>
+            <div><input type="date" name="endPeriod" th:attr="placeholder=${milestone.endPeriod}"
+                        th:field="*{endPeriod}" /></div>
+            <div><select name="status">
+                <option th:value="'진행'" th:selected="${reqMilestoneDto.status == '진행'}">진행</option>
+                <option th:value="'종료'" th:selected="${reqMilestoneDto.status == '종료'}">종료</option>
+            </select></div>
+            <div><button class="create-btn" type="submit" th:text="'수정'"></button></div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
