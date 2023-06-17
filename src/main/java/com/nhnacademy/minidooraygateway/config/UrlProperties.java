@@ -10,6 +10,9 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 public class UrlProperties {
     private String url;
 
+    public String getMembers() {
+        return url + "/members";
+    }
     public String getMember() {
         return url + "/members/{member-id}";
     }

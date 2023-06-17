@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="'Mini Dooray! | 새 프로젝트'"></title>
+    <link rel="stylesheet" href="/css/default.css"/>
+    <link rel="stylesheet" href="/css/main.css"/>
+    <link rel="stylesheet" href="/css/write.css"/>
+</head>
+<body>
+<th:block th:include="fragments/header"/>
+
+<div id="main-container">
+    <div id="icon-menu-container">
+        <div><a><img class="icon" src="/img/home.png"/></a></div>
+        <div><a th:href="@{'/projects/' + ${#authentication.name}}"><img class="icon" src="/img/task.png"/></a></div>
+        <div><a><img class="icon" src="/img/account.png"/></a></div>
+    </div>
+    <div class="write-container">
+        <form th:method="post" th:action="@{${action}}" th:object="${reqProjectDto}">
+            <div><input type="hidden" name="projectStatusName" th:value="'활성'" /></div>
+            <div><input type="text" name="name" th:attr="placeholder='프로젝트명을 입력해주세요.'"
+                   th:field="*{name}"/></div>
+            <div><textarea name="description" th:attr="placeholder='프로젝트 설명을 입력해주세요.'" th:field="*{description}"></textarea></div>
+            <div><button class="write-btn" type="submit" th:text="'프로젝트 만들기'"></button></div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

@@ -17,12 +17,11 @@
     </div>
     <div class="write-container">
         <form th:method="post" th:action="@{${action}}" th:object="${reqTaskDto}">
-            <div><input type="hidden" name="milestoneId" th:value="1"
-                   th:field="*{milestoneId}"/></div>
+            <div><input type="hidden" name="milestoneId" th:value="1" /></div>
             <div><input type="text" name="title" th:attr="placeholder='제목을 입력해주세요.'"
                    th:field="*{title}"/></div>
-            <div><input type="text" name="taskWriterMemberId" th:placeholder="${#authentication.name}"
-                   th:field="*{taskWriterMemberId}" /></div>
+            <div><input type="text" name="taskWriterMemberId" th:value="${#authentication.name}"
+                   readonly /></div>
             <div><textarea name="content" th:attr="placeholder='내용을 입력해주세요.'" th:field="*{content}"></textarea></div>
             <div><button class="write-btn" type="submit" th:text="'저장'"></button></div>
         </form>

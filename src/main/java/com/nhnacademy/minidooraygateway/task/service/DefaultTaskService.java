@@ -9,6 +9,7 @@ import com.nhnacademy.minidooraygateway.task.dto.milestone.RespMilestoneDto;
 import com.nhnacademy.minidooraygateway.task.dto.project.GetProjectDto;
 import com.nhnacademy.minidooraygateway.task.dto.project.ReqProjectDto;
 import com.nhnacademy.minidooraygateway.task.dto.project.RespProjectDto;
+import com.nhnacademy.minidooraygateway.task.dto.project.member.RespProjectMemberDto;
 import com.nhnacademy.minidooraygateway.task.dto.tag.GetTagDto;
 import com.nhnacademy.minidooraygateway.task.dto.tag.ReqTagDto;
 import com.nhnacademy.minidooraygateway.task.dto.tag.RespTagDto;
@@ -17,12 +18,14 @@ import com.nhnacademy.minidooraygateway.task.dto.task.ReqTaskDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class DefaultTaskService implements TaskService {
     private final TaskAdaptor taskAdaptor;
+    private final AccountAdaptor accountAdaptor;
 
     @Override
     public RespProjectDto createProject(ReqProjectDto postProjectDto) {
@@ -40,8 +43,21 @@ public class DefaultTaskService implements TaskService {
     }
 
     @Override
-    public Response deleteProject(Long projectId) {
-        return taskAdaptor.deleteProject(projectId);
+    public void modifyProject(Long projectId, ReqProjectDto reqProjectDto) {
+        taskAdaptor.modifyProject(projectId, reqProjectDto);
+    }
+    @Override
+    public void deleteProject(Long projectId) {
+        taskAdaptor.deleteProject(projectId);
+    }
+
+    @Override
+    public void createProjectMember(Long projectId, String[] members) {
+        List<RespProjectMemberDto> respProjectMemberDtoList = new ArrayList<>();
+        for (String targetMemberId : members) {
+            respProjectMemberDtoList.add(new RespProjectMemberDto(2, targetMemberId));
+        }
+        taskAdaptor.addProjectMembers(projectId, respProjectMemberDtoList);
     }
 
     @Override
@@ -57,6 +73,11 @@ public class DefaultTaskService implements TaskService {
     @Override
     public void createTask(ReqTaskDto reqTaskDto, Long projectId) {
         taskAdaptor.createTask(reqTaskDto, projectId);
+    }
+
+    @Override
+    public void modifyTask(ReqTaskDto reqTaskDto, Long projectId, Long taskId) {
+        taskAdaptor.modifyTask(reqTaskDto, projectId, taskId);
     }
 
     @Override

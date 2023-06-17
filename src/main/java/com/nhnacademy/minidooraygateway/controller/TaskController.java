@@ -38,8 +38,24 @@ public class TaskController {
         return "task/list";
     }
 
+    @GetMapping("/views/{task-id}/{project-id}/{member-id}")
+    public String getTask(Model model,
+                          @PathVariable("task-id") Long taskId,
+                          @PathVariable("project-id") Long projectId,
+                          @PathVariable("member-id") String memberId) {
+        List<GetProjectDto> projectList = taskService.getProjectsByMemberId(memberId);
+        GetTaskDto task = taskService.getTask(projectId, taskId);
+
+        model.addAttribute("projectList", projectList);
+        model.addAttribute("task", task);
+        model.addAttribute("deleteAction", "/tasks/" + taskId + "/" + projectId + "/ " + memberId);
+        model.addAttribute("modifyAction", "/tasks/" + projectId + "/modify/" + taskId);
+
+        return "task/view";
+    }
+
     @GetMapping("/{project-id}/write")
-    public String writeTask(Model model,
+    public String createTaskForm(Model model,
                             @PathVariable("project-id") Long projectId) {
         // 업무
         model.addAttribute("reqTaskDto", new ReqTaskDto());
@@ -49,15 +65,34 @@ public class TaskController {
         model.addAttribute("reqTagDto", new ReqTagDto());
         // 마일스톤
         model.addAttribute("reqMilestoneDto", new ReqMilestoneDto());
-        return "task/write";
+        return "task/create-form";
     }
 
     @PostMapping("/{project-id}")
     public String createTask(@PathVariable("project-id") Long projectId,
-                             ReqTaskDto reqTaskDto,
-                             ReqTagDto reqTagDto) {
+                             ReqTaskDto reqTaskDto) {
         taskService.createTask(reqTaskDto, projectId);
-//        taskService.createTag(reqTagDto, projectId);
+
+        return "redirect:/tasks/" + projectId + "/" + reqTaskDto.getTaskWriterMemberId();
+    }
+
+    @GetMapping("/{project-id}/modify/{task-id}")
+    public String modifyTaskForm(Model model,
+                                 @PathVariable("project-id") Long projectId,
+                                 @PathVariable("task-id") Long taskId) {
+        GetTaskDto task = taskService.getTask(projectId, taskId);
+        model.addAttribute("task", task);
+        model.addAttribute("reqTaskDto", new ReqTaskDto());
+        model.addAttribute("action", "/tasks/" + projectId + "/modify/" + taskId);
+        return "task/modify-form";
+    }
+
+    @PutMapping("/{project-id}/modify/{task-id}")
+    public String modifyTask(@PathVariable("project-id") Long projectId,
+                             @PathVariable("task-id") Long taskId,
+                             ReqTaskDto reqTaskDto) {
+        taskService.modifyTask(reqTaskDto, projectId, taskId);
+
         return "redirect:/tasks/" + projectId + "/" + reqTaskDto.getTaskWriterMemberId();
     }
 

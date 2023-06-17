@@ -1,5 +1,6 @@
 package com.nhnacademy.minidooraygateway.task.dto.task;
 
+import io.micrometer.core.lang.Nullable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,6 +11,7 @@ import lombok.NoArgsConstructor;
 public class GetTaskDto {
     private Long taskId;
     private String taskWriterMemberId;
+    @Nullable
     private Long milestoneId;
     private String title;
     private String content;

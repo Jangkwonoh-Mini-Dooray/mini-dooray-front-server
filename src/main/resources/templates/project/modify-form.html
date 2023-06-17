@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="'Mini Dooray! | 업무 수정'"></title>
+    <link rel="stylesheet" href="/css/default.css"/>
+    <link rel="stylesheet" href="/css/main.css"/>
+    <link rel="stylesheet" href="/css/write.css"/>
+</head>
+<body>
+<th:block th:include="fragments/header"/>
+
+<div id="main-container">
+    <div id="icon-menu-container">
+        <div><a><img class="icon" src="/img/home.png"/></a></div>
+        <div><a th:href="@{'/projects/' + ${#authentication.name}}"><img class="icon" src="/img/task.png"/></a></div>
+        <div><a><img class="icon" src="/img/account.png"/></a></div>
+    </div>
+    <div class="write-container">
+        <form th:method="put" th:action="@{${action}}" th:object="${reqTaskDto}">
+            <div><input type="hidden" name="milestoneId" th:value="1" /></div>
+            <div><input type="text" name="title" th:attr="placeholder=${task.title}"
+                   th:field="*{title}"/></div>
+            <div><input type="text" name="taskWriterMemberId" th:value="${task.taskWriterMemberId}" readonly /></div>
+            <div><textarea name="content" th:attr="placeholder=${task.content}" th:field="*{content}"></textarea></div>
+            <div><button class="write-btn" type="submit" th:text="'수정'"></button></div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

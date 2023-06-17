@@ -7,6 +7,7 @@ import com.nhnacademy.minidooraygateway.task.dto.milestone.RespMilestoneDto;
 import com.nhnacademy.minidooraygateway.task.dto.project.GetProjectDto;
 import com.nhnacademy.minidooraygateway.task.dto.project.ReqProjectDto;
 import com.nhnacademy.minidooraygateway.task.dto.project.RespProjectDto;
+import com.nhnacademy.minidooraygateway.task.dto.project.member.RespProjectMemberDto;
 import com.nhnacademy.minidooraygateway.task.dto.tag.GetTagDto;
 import com.nhnacademy.minidooraygateway.task.dto.tag.ReqTagDto;
 import com.nhnacademy.minidooraygateway.task.dto.tag.RespTagDto;
@@ -22,13 +23,19 @@ public interface TaskService {
 
     GetProjectDto getProject(Long projectId);
 
-    Response deleteProject(Long projectId);
+    void modifyProject(Long projectId, ReqProjectDto reqProjectDto);
+
+    void deleteProject(Long projectId);
+
+    void createProjectMember(Long projectId, String[] members);
 
     List<GetTaskDto> getTasks(Long projectId);
 
     GetTaskDto getTask(Long projectId, Long taskId);
 
     void createTask(ReqTaskDto reqTaskDto, Long projectId);
+
+    void modifyTask(ReqTaskDto reqTaskDto, Long projectId, Long taskId);
 
     void deleteTask(Long taskId);
 

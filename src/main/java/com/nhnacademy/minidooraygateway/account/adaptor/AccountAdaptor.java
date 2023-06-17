@@ -27,6 +27,19 @@ public class AccountAdaptor {
     private final UrlProperties urlProperties;
     private final PasswordEncoder passwordEncoder;
 
+    public List<GetMemberDto> getMembers() {
+        HttpEntity<String> requestEntity = new HttpEntity<>(DefaultHttpHeader.getHeader());
+
+        ResponseEntity<List<GetMemberDto>> exchange =
+                restTemplate.exchange(urlProperties.getMembers(),
+                        HttpMethod.GET,
+                        requestEntity,
+                        new ParameterizedTypeReference<>() {
+                        });
+        return exchange.getBody();
+    }
+
+
     public GetMemberDto getMember(String memberId) {
         HttpEntity<String> requestEntity = new HttpEntity<>(DefaultHttpHeader.getHeader());
 

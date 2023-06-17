@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="'Mini Dooray! | 새 업무'"></title>
+    <link rel="stylesheet" href="/css/default.css"/>
+    <link rel="stylesheet" href="/css/main.css"/>
+    <link rel="stylesheet" href="/css/write.css"/>
+</head>
+<body>
+<th:block th:include="fragments/header"/>
+
+<div id="main-container">
+    <div id="icon-menu-container">
+        <div><a><img class="icon" src="/img/home.png"/></a></div>
+        <div><a th:href="@{'/projects/' + ${#authentication.name}}"><img class="icon" src="/img/task.png"/></a></div>
+        <div><a><img class="icon" src="/img/account.png"/></a></div>
+    </div>
+    <div class="write-container">
+        <form th:method="post" th:action="@{${action}}" >
+            <div th:each="item, i : ${members}">
+                <input type="checkbox" name="memberList" th:value="${item.memberId}" th:text="${item.memberId}">
+            </div>
+            <div><button class="write-btn" type="submit" th:text="'프로젝트 멤버 추가'"></button></div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
