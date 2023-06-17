@@ -1,5 +1,6 @@
 package com.nhnacademy.minidooraygateway.controller;
 
+import com.nhnacademy.minidooraygateway.task.dto.milestone.GetMilestoneDto;
 import com.nhnacademy.minidooraygateway.task.dto.milestone.ReqMilestoneDto;
 import com.nhnacademy.minidooraygateway.task.dto.project.GetProjectDto;
 import com.nhnacademy.minidooraygateway.task.dto.tag.ReqTagDto;
@@ -86,45 +87,53 @@ public class TaskController {
     @GetMapping("/milestones/{project-id}")
     public String  getMilestones(Model model,
                                  @PathVariable("project-id") Long projectId) {
-        taskService.getMilestones(projectId);
-        return "milestone/list";
-    }
+        List<GetMilestoneDto> milestoneList = taskService.getMilestones(projectId);
+        String projectName = taskService.getProject(projectId).getName();
 
-    @GetMapping("/milestones/views/{milestone-id}")
-    public String getMilestone(@PathVariable("milestone-id") Long milestoneId) {
-        taskService.getMilestone(milestoneId);
-        return "milestone/view";
+        model.addAttribute("projectId", projectId);
+        model.addAttribute("milestoneList", milestoneList);
+        model.addAttribute("projectName", projectName);
+        return "milestone/list";
     }
 
     @GetMapping("/milestones/{project-id}/create")
     public String createMilestoneForm(Model model,
                                       @PathVariable("project-id") Long projectId) {
         model.addAttribute("reqMilestoneDto", new ReqMilestoneDto());
-        model.addAttribute("action", "/milestone/" + projectId + "/create");
-        return "milestone/form";
+        model.addAttribute("action", "/tasks/milestones/" + projectId + "/create");
+        return "milestone/create-form";
     }
 
     @PostMapping("/milestones/{project-id}/create")
     public String createMilestone(@PathVariable("project-id") Long projectId,
                                   ReqMilestoneDto reqMilestoneDto) {
         taskService.createMilestone(projectId, reqMilestoneDto);
-        return "redirect:/milestones/" + projectId;
+        return "redirect:/tasks/milestones/" + projectId;
     }
 
     @GetMapping("/milestones/{project-id}/modify/{milestone-id}")
     public String modifyMilestoneForm(Model model,
                                       @PathVariable("project-id") Long projectId,
-                                      @PathVariable("milestond-id") Long milestoneId) {
+                                      @PathVariable("milestone-id") Long milestoneId) {
+        GetMilestoneDto milestone = taskService.getMilestone(milestoneId);
+        model.addAttribute("milestone", milestone);
         model.addAttribute("reqMilestoneDto", new ReqMilestoneDto());
-        model.addAttribute("action", "/milestones/" + projectId + "/modify/" + milestoneId);
-        return "milestone/form";
+        model.addAttribute("action", "/tasks/milestones/" + projectId + "/modify/" + milestoneId);
+        return "milestone/modify-form";
     }
 
-    @PostMapping("/milestones/{project-id}/modify/{milestone-id}")
+    @PutMapping("/milestones/{project-id}/modify/{milestone-id}")
     public String modifyMilestone(@PathVariable("project-id") Long projectId,
                                   @PathVariable("milestone-id") Long milestoneId,
                                   ReqMilestoneDto reqMilestoneDto) {
         taskService.modifyMilestone(milestoneId, reqMilestoneDto);
-        return "redirect:/milestones/" + projectId;
+        return "redirect:/tasks/milestones/" + projectId;
+    }
+
+    @DeleteMapping("/milestones/delete/{project-id}")
+    public String deleteMilestone(@PathVariable("project-id") Long projectId,
+                                  Long milestoneId) {
+        taskService.deleteMilestone(milestoneId);
+        return "redirect:/tasks/milestones/" + projectId;
     }
 }

@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
@@ -13,7 +14,9 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class ReqMilestoneDto {
     private String name;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate startPeriod;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate endPeriod;
     private String status;
 }

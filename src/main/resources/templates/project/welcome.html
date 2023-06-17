@@ -17,7 +17,7 @@
   </style>
 </head>
 <body>
-<h1 th:text="'Welcome Mini Dooray!'"></h1>
+<h1 class="welcome-title" th:text="'Welcome, Mini Dooray!'"></h1>
 <p><span class="name" th:text="${#authentication.name}"></span><span th:text="' 님, 성공적으로 로그인에 성공하였습니다.'"></span></p>
 <div><a th:href="@{'/projects/' + ${#authentication.name}}"><button th:text="'Mini Dooray! 시작하기'"></button></a></div>
 </body>

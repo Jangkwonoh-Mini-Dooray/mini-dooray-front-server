@@ -1,10 +1,81 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title th:text="'Mini Dooray! | 마일스톤'"></title>
+    <link rel="stylesheet" href="/css/default.css"/>
+    <link rel="stylesheet" href="/css/main.css"/>
+    <script type="text/javascript">
+        window.addEventListener('DOMContentLoaded', function () {
+            'use strict';
+            const btnDelete = document.getElementById("btn-delete");
+
+            btnDelete.addEventListener('click', function () {
+                const ans = confirm("삭제하시겠습니까?");
+                if (ans) {
+                    const deleteForm = document.getElementById("milestone-delete-form");
+                    deleteForm.submit();
+                }
+            });
+        });
+    </script>
 </head>
 <body>
+<th:block th:include="fragments/header"/>
 
+<div id="main-container">
+    <div id="icon-menu-container">
+        <div><a><img class="icon" src="/img/home.png"/></a></div>
+        <div><a th:href="@{'/projects/' + ${#authentication.name}}"><img class="icon" src="/img/task.png"/></a></div>
+        <div><a><img class="icon" src="/img/account.png"/></a></div>
+    </div>
+    <div>
+        <h1><span th:text="${projectName}"></span>&nbsp;&nbsp;<span th:text="마일스톤"></span></h1>
+
+        <a th:href="@{'/tasks/milestones/' + ${projectId} + '/create'}">
+            <button class="btn-create" th:text="'+ 마일스톤 생성'"></button>
+        </a>
+
+        <table>
+            <caption></caption>
+            <thead>
+            <tr class="table_title">
+                <th th:text="'마일스톤명'"></th>
+                <th th:text="'시작 기간'"></th>
+                <th th:text="'종료 기간'"></th>
+                <th th:text="'상태'"></th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each=" item, i : ${milestoneList}">
+                <td th:text="${item.name}"></td>
+
+                <td th:if="${item.startPeriod != null}" th:text="${item.startPeriod}"></td>
+                <td th:if="${item.startPeriod} == null" th:text="'-'"></td>
+
+                <td th:if="${item.endPeriod != null}" th:text="${item.endPeriod}"></td>
+                <td th:if="${item.endPeriod == null}" th:text="'-'"></td>
+
+                <td th:text="${item.status}"></td>
+
+                <td>
+                    <form th:method="delete" th:action="@{'/tasks/milestones/delete/' + ${projectId}}" id="milestone-delete-form">
+                        <input type="hidden" name="milestoneId" th:value="${item.milestoneId}"/>
+                        <button th:type="submit" class="btn-delete" th:text="'삭제'"></button>
+                    </form>
+                </td>
+
+                <td>
+                    <a th:href="@{'/tasks/milestones/' + ${projectId} + '/modify/' + ${item.milestoneId}}">
+                        <button class="btn-modify" th:text="'수정'"></button>
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 </body>
 </html>
