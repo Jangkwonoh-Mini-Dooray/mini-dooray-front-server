@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="'Mini Dooray! | 마일스톤'"></title>
+    <link rel="stylesheet" href="/css/default.css"/>
+    <link rel="stylesheet" href="/css/main.css"/>
+    <script type="text/javascript">
+        window.addEventListener('DOMContentLoaded', function () {
+            'use strict';
+            const btnDelete = document.getElementById("btn-delete");
+
+            btnDelete.addEventListener('click', function () {
+                const ans = confirm("삭제하시겠습니까?");
+                if (ans) {
+                    const deleteForm = document.getElementById("milestone-delete-form");
+                    deleteForm.submit();
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+<th:block th:include="fragments/header"/>
+
+<div id="main-container">
+    <div id="icon-menu-container">
+        <div><a><img class="icon" src="/img/home.png"/></a></div>
+        <div><a th:href="@{'/projects/' + ${#authentication.name}}"><img class="icon" src="/img/task.png"/></a></div>
+        <div><a><img class="icon" src="/img/account.png"/></a></div>
+    </div>
+    <div>
+        <h1><span th:text="${projectName}"></span>&nbsp;&nbsp;<span th:text="'태그'"></span></h1>
+
+        <div>
+            <form th:method="post" th:action="@{${action}}" th:object="${reqTagDto}">
+                <div><input type="text" name="name" th:attr="placeholder='태그명'" th:field="*{name}" /></div>
+                <div><button class="create-btn" type="submit" th:text="'태그 생성'"></button></div>
+            </form>
+        </div>
+
+        <table>
+            <caption></caption>
+            <thead>
+            <tr class="table_title">
+                <th th:text="'태그명'"></th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each=" item, i : ${tagList}">
+                <td th:text="${item.name}"></td>
+
+                <td>
+                    <form th:method="delete" th:action="@{'/tasks/tags/delete/' + ${projectId}}" id="tag-delete-form">
+                        <input type="hidden" name="tagId" th:value="${item.tagId}"/>
+                        <button th:type="submit" class="btn-delete" th:text="'삭제'"></button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
