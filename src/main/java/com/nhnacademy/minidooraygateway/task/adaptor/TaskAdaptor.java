@@ -294,7 +294,7 @@ public class TaskAdaptor {
         return exchange.getBody();
     }
 
-    public List<GetTagDto> getTagsByTags(Long projectId, Long taskId) {
+    public List<GetTagDto> getTagsByTaskId(Long projectId, Long taskId) {
         HttpEntity<String> requestEntity = new HttpEntity<>(DefaultHttpHeader.getHeader());
 
         ResponseEntity<List<GetTagDto>> exchange =

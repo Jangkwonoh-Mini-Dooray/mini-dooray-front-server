@@ -17,7 +17,7 @@
     </div>
     <div>
         <form th:method="post" th:action="@{${action}}" th:object="${reqMilestoneDto}">
-            <div><input type="text" name="name" th:attr="placeholder='마일스톤명을 입력해주세요'" th:field="*{name}" /></div>
+            <div><input type="text" name="name" th:attr="placeholder='마일스톤명을 입력해주세요.'" th:field="*{name}" /></div>
             <div><input type="date" name="startPeriod" th:attr="placeholder='제목을 입력해주세요.'"
                         th:field="*{startPeriod}"/></div>
             <div><input type="date" name="endPeriod"

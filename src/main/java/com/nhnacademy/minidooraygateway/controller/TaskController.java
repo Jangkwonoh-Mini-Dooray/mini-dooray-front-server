@@ -3,6 +3,7 @@ package com.nhnacademy.minidooraygateway.controller;
 import com.nhnacademy.minidooraygateway.task.dto.milestone.GetMilestoneDto;
 import com.nhnacademy.minidooraygateway.task.dto.milestone.ReqMilestoneDto;
 import com.nhnacademy.minidooraygateway.task.dto.project.GetProjectDto;
+import com.nhnacademy.minidooraygateway.task.dto.tag.GetTagDto;
 import com.nhnacademy.minidooraygateway.task.dto.tag.ReqTagDto;
 import com.nhnacademy.minidooraygateway.task.dto.task.GetTaskDto;
 import com.nhnacademy.minidooraygateway.task.dto.task.ReqTaskDto;
@@ -35,21 +36,6 @@ public class TaskController {
         model.addAttribute("projectName", project.getName());
 
         return "task/list";
-    }
-
-    @GetMapping("/views/{task-id}/{project-id}/{member-id}")
-    public String getTask(Model model,
-                          @PathVariable("task-id") Long taskId,
-                          @PathVariable("project-id") Long projectId,
-                          @PathVariable("member-id") String memberId) {
-        List<GetProjectDto> projectList = taskService.getProjectsByMemberId(memberId);
-        GetTaskDto task = taskService.getTask(projectId, taskId);
-
-        model.addAttribute("projectList", projectList);
-        model.addAttribute("task", task);
-        model.addAttribute("deleteAction", "/tasks/" + taskId + "/" + projectId + "/" + memberId);
-
-        return "task/view";
     }
 
     @GetMapping("/{project-id}/write")
@@ -85,8 +71,8 @@ public class TaskController {
     }
 
     @GetMapping("/milestones/{project-id}")
-    public String  getMilestones(Model model,
-                                 @PathVariable("project-id") Long projectId) {
+    public String getMilestones(Model model,
+                                @PathVariable("project-id") Long projectId) {
         List<GetMilestoneDto> milestoneList = taskService.getMilestones(projectId);
         String projectName = taskService.getProject(projectId).getName();
 
@@ -135,5 +121,33 @@ public class TaskController {
                                   Long milestoneId) {
         taskService.deleteMilestone(milestoneId);
         return "redirect:/tasks/milestones/" + projectId;
+    }
+
+    @GetMapping("/tags/{project-id}")
+    public String getTags(Model model,
+                          @PathVariable("project-id") Long projectId) {
+        List<GetTagDto> tagList = taskService.getTagsByProjectId(projectId);
+        String projectName = taskService.getProject(projectId).getName();
+
+        model.addAttribute("projectId", projectId);
+        model.addAttribute("tagList", tagList);
+        model.addAttribute("projectName", projectName);
+        model.addAttribute("reqTagDto", new ReqTagDto());
+        model.addAttribute("action", "/tasks/tags/" + projectId + "/create");
+        return "tag/list";
+    }
+
+    @PostMapping("/tags/{project-id}/create")
+    public String createTag(@PathVariable("project-id") Long projectId,
+                                  ReqTagDto reqTagDto) {
+        taskService.createTag(reqTagDto, projectId);
+        return "redirect:/tasks/tags/" + projectId;
+    }
+
+    @DeleteMapping("/tags/delete/{project-id}")
+    public String deleteTag(@PathVariable("project-id") Long projectId,
+                                  Long tagId) {
+        taskService.deleteTag(tagId);
+        return "redirect:/tasks/tags/" + projectId;
     }
 }

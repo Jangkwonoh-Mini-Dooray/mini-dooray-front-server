@@ -65,33 +65,28 @@ public class DefaultTaskService implements TaskService {
     }
 
     @Override
-    public void createTag(ReqTagDto reqTagDto, Long projectId) {
-        taskAdaptor.createTag(reqTagDto, projectId);
-    }
-
-    @Override
     public List<GetTagDto> getTagsByProjectId(Long projectId) {
         return taskAdaptor.getTags(projectId);
     }
 
     @Override
     public List<GetTagDto> getTagsByTaskId(Long projectId, Long taskId) {
-        return taskAdaptor.getTagsByTags(projectId, taskId);
+        return taskAdaptor.getTagsByTaskId(projectId, taskId);
     }
 
     @Override
-    public RespTagDto postTagOfTask(ReqTagDto reqTagDto, Long projectId) {
-        return taskAdaptor.createTag(reqTagDto,  projectId);
+    public void createTag(ReqTagDto reqTagDto, Long projectId) {
+        taskAdaptor.createTag(reqTagDto, projectId);
     }
 
     @Override
-    public ReqTagDto modifyTagOfTask(ReqTagDto reqTagDto, Long projectId, Long tagId) {
-        return taskAdaptor.modifyTag(reqTagDto, projectId, tagId);
+    public void modifyTag(ReqTagDto reqTagDto, Long projectId, Long tagId) {
+        taskAdaptor.modifyTag(reqTagDto, projectId, tagId);
     }
 
     @Override
-    public Response deleteTag(Long tagId) {
-        return taskAdaptor.deleteTag(tagId);
+    public void deleteTag(Long tagId) {
+        taskAdaptor.deleteTag(tagId);
     }
 
     @Override
