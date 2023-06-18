@@ -1,0 +1,39 @@
+#task-view-container {
+    width: 95%;
+    margin-top: 100px;
+    margin-left: 100px;
+}
+
+.task-view {
+    margin-top: 20px;
+    width: 90%;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #0542AE;
+    text-align: left;
+}
+
+.task-view-title {
+    font-size: 20px;
+    color: #0542AE;
+    font-weight: bold;
+}
+
+.btn-modify, .btn-delete {
+    background: #0542AE;
+    color: white;
+    font-size: 14px;
+    text-align: center;
+    width: 80px;
+    height: 40px;
+    border-radius: 18px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.btn-modify:hover, .btn-delete:hover {
+    cursor: pointer;
+    font-size: 15px;
+    background: #003085;
+}
+
+

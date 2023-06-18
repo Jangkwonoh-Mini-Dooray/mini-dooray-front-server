@@ -61,6 +61,15 @@ public class DefaultTaskService implements TaskService {
     }
 
     @Override
+    public void modifyProjectMember(Long projectId, String[] members) {
+        List<RespProjectMemberDto> respProjectMemberDtoList = new ArrayList<>();
+        for (String targetMemberId : members) {
+            respProjectMemberDtoList.add(new RespProjectMemberDto(2, targetMemberId));
+        }
+        taskAdaptor.modifyProjectMembers(projectId, respProjectMemberDtoList);
+    }
+
+    @Override
     public List<GetTaskDto> getTasks(Long projectId) {
         return taskAdaptor.getTasks(projectId);
     }

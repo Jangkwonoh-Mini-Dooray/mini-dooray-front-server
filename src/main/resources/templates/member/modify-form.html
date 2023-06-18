@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title th:text="'Mini Dooray! | 프로젝트 수정'"></title>
+    <title th:text="'Mini Dooray! | 프로젝트 멤버 수정'"></title>
     <link rel="stylesheet" href="/css/default.css"/>
     <link rel="stylesheet" href="/css/main.css"/>
     <link rel="stylesheet" href="/css/write.css"/>
@@ -16,12 +16,12 @@
         <div><a><img class="icon" src="/img/account.png"/></a></div>
     </div>
     <div class="write-container">
-        <h1 th:text="'STEP 2-1. 프로젝트 수정'"></h1>
-        <form th:method="put" th:action="@{${action}}">
-            <div><input type="hidden" name="projectStatusName" th:value="'활성'" /></div>
-            <div><input type="text" name="name" th:attr="placeholder=${project.name}" /></div>
-            <div><textarea name="description" th:attr="placeholder=${project.description}"></textarea></div>
-            <div><button class="write-btn" type="submit" th:text="'프로젝트 수정하기'"></button></div>
+        <h1 th:text="'STEP 2-2. 프로젝트 수정 : 프로젝트 멤버 추가'"></h1>
+        <form class="add-member" th:method="put" th:action="@{${action}}" >
+            <div th:each="item, i : ${members}">
+                <input class="checkbox" type="checkbox" name="memberList" th:value="${item.memberId}" th:text="${item.memberId}">
+            </div>
+            <div class="write-btn-container"><button class="write-btn" type="submit" th:text="'프로젝트 멤버 추가'"></button></div>
         </form>
     </div>
 </div>

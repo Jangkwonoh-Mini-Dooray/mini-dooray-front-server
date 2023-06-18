@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title th:text="'Mini Dooray! | 새 업무'"></title>
+    <title th:text="'Mini Dooray! | 새 프로젝트 멤버 추가'"></title>
     <link rel="stylesheet" href="/css/default.css"/>
     <link rel="stylesheet" href="/css/main.css"/>
     <link rel="stylesheet" href="/css/write.css"/>
@@ -16,11 +16,12 @@
         <div><a><img class="icon" src="/img/account.png"/></a></div>
     </div>
     <div class="write-container">
-        <form th:method="post" th:action="@{${action}}" >
+        <h1 th:text="'STEP 2-2. 프로젝트 만들기 : 프로젝트 멤버 추가'"></h1>
+        <form class="add-member" th:method="post" th:action="@{${action}}" >
             <div th:each="item, i : ${members}">
-                <input type="checkbox" name="memberList" th:value="${item.memberId}" th:text="${item.memberId}">
+                <input class="checkbox" type="checkbox" name="memberList" th:value="${item.memberId}" th:text="${item.memberId}">
             </div>
-            <div><button class="write-btn" type="submit" th:text="'프로젝트 멤버 추가'"></button></div>
+            <div class="write-btn-container"><button class="write-btn" type="submit" th:text="'프로젝트 멤버 추가'"></button></div>
         </form>
     </div>
 </div>

@@ -5,6 +5,7 @@
     <title th:text="'Mini Dooray! | 마일스톤 수정'"></title>
     <link rel="stylesheet" href="/css/default.css"/>
     <link rel="stylesheet" href="/css/main.css"/>
+    <link rel="stylesheet" href="/css/milestone.css"/>
 </head>
 <body>
 <th:block th:include="fragments/header"/>
@@ -15,7 +16,8 @@
         <div><a th:href="@{'/projects/' + ${#authentication.name}}"><img class="icon" src="/img/task.png"/></a></div>
         <div><a><img class="icon" src="/img/account.png"/></a></div>
     </div>
-    <div>
+    <div class="milestone-container">
+        <h1 class="milestone-title"></span>&nbsp;<span th:text="'마일스톤 수정'"></span></h1>
         <form th:method="put" th:action="@{${action}}" th:object="${reqMilestoneDto}">
             <div><input type="text" name="name" th:attr="placeholder=${milestone.name}" th:field="*{name}" /></div>
             <div><input type="date" name="startPeriod" th:attr="placeholder=${milestone.startPeriod}"
@@ -26,7 +28,7 @@
                 <option th:value="'진행'" th:selected="${reqMilestoneDto.status == '진행'}">진행</option>
                 <option th:value="'종료'" th:selected="${reqMilestoneDto.status == '종료'}">종료</option>
             </select></div>
-            <div><button class="create-btn" type="submit" th:text="'수정'"></button></div>
+            <div><button class="btn-create" type="submit" th:text="'수정'"></button></div>
         </form>
     </div>
 </div>

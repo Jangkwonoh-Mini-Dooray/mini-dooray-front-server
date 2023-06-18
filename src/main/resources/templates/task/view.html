@@ -5,6 +5,7 @@
     <title th:text="'Mini Dooray! | Project'"></title>
     <link rel="stylesheet" href="/css/default.css"/>
     <link rel="stylesheet" href="/css/main.css"/>
+    <link rel="stylesheet" href="/css/task.css"/>
 </head>
 <body>
 <th:block th:include="fragments/header"/>
@@ -16,23 +17,18 @@
         <div><a><img class="icon" src="/img/account.png"/></a></div>
     </div>
     <div id="task-view-container">
-        <table>
-            <caption></caption>
-            <thead>
-            <tr class="table_title">
-                <th th:text="'작성자'"></th>
-                <th th:text="'제목'"></th>
-                <th th:text="'내용'"></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td th:text="${task.taskWriterMemberId}"></td>
-                <td th:text="${task.title}"></td>
-                <td th:text="${task.content}"></td>
-            </tr>
-            </tbody>
-        </table>
+        <div class="task-view">
+            <span class="task-view-title" th:text="'작성자 : '"></span>&nbsp;&nbsp;
+            <span th:text="${task.taskWriterMemberId}"></span>
+        </div>
+        <div class="task-view">
+            <span class="task-view-title"  th:text="'제목 : '"></span>&nbsp;&nbsp;
+            <span th:text="${task.title}"></span>
+        </div>
+        <div class="task-view">
+            <span class="task-view-title" th:text="'내용 : '"></span>&nbsp;&nbsp;
+            <span th:text="${task.content}"></span>
+        </div>
 
         <div th:if="${task.taskWriterMemberId.equals(#authentication.name)}">
             <a th:href="@{${modifyAction}}">

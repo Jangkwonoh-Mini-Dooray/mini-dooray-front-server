@@ -1,3 +1,13 @@
+h1 {
+    margin-top: 80px;
+    text-align: center;
+    color: #0542AE;
+}
+
+.write-container {
+    margin-left: 60px;
+}
+
 input, textarea {
     width: 900px;
     height: 70px;
@@ -23,4 +33,20 @@ textarea {
     font-size: 18px;
     color: white;
     border-radius: 15px;
+}
+
+.add-member > div {
+    text-align: left;
+    margin-left: 70px;
+    margin-top: 20px;
+}
+
+.write-btn {
+    margin-left: 55px;
+}
+
+.checkbox {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
 }

@@ -30,6 +30,6 @@ public class AccountController {
     @PostMapping("/signup")
     public String doSignUp(@ModelAttribute @Valid PostMemberDto postMemberDto) {
         accountService.createMember(postMemberDto);
-        return "redirect:/login";
+        return "redirect:/accounts/login";
     }
 }

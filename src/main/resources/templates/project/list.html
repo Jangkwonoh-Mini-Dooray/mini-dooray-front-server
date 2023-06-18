@@ -15,23 +15,38 @@
         <div><a th:href="@{'/projects/' + ${#authentication.name}}"><img class="icon" src="/img/task.png"/></a></div>
         <div><a><img class="icon" src="/img/account.png"/></a></div>
     </div>
-    <div id="project-list-container">
+    <div id="project-main-container">
         <div th:if="${projectList.isEmpty()}">
-            <h1 th:text="'소속된 프로젝트가 없습니다. 새로운 프로젝트를 생성해보세요!'"></h1>
+            <h1 class="welcome" th:text="'Welcome !'"></h1>
+            <span class="message-none" th:text="'아직 소속된 프로젝트가 없습니다. 새로운 프로젝트를 생성해보세요!'"></span>
+            <br>
             <a th:href="@{${createProjectLink}}">
-                <button id="add-project-btn" th:text="'새 프로젝트 만들기'"></button>
+                <button class="add-project-btn-none" th:text="'새 프로젝트 만들기'"></button>
             </a>
         </div>
         <div th:if="${!projectList.isEmpty()}">
             <a th:href="@{${createProjectLink}}">
-                <div id="add-task-btn" th:text="'+ 새 프로젝트'"></div>
+                <div class="add-project-btn" th:text="'+ 새 프로젝트'"></div>
             </a>
-            <div class="project-list" th:each=" item, i : ${projectList}">
-                <div class="project-name" th:text="${item.name}"></div>
-                <div class="project-description" th:text="${item.description}"></div>
-                <a th:href="@{'/tasks/' + ${item.getProjectId()} + '/' + ${#authentication.name}}">
-                    <div th:text="'프로젝트로 이동'"></div>
-                </a>
+            <div class="project-list-menu" th:each=" item, i : ${projectList}">
+                <div>
+                    <div class="project-name" th:text="${item.name}"></div>
+                    <div class="project-description" th:text="${item.description}"></div>
+                </div>
+                <div class="project-btn">
+                    <a th:href="@{'/tasks/' + ${item.getProjectId()} + '/' + ${#authentication.name}}">
+                        <button class="go-project-btn" th:text="'프로젝트로 이동'"></button><br>
+                    </a>
+
+                    <a th:href="@{'/projects/' + ${#authentication.name} + '/modify/' + ${item.projectId}}">
+                        <button class="modify-project-btn" th:text="'수정'"></button>
+                    </a>
+
+                    <form th:method="delete" th:action="@{'/projects/' + ${#authentication.name}}" id="project-delete-form">
+                        <input type="hidden" name="projectId" th:value="${item.projectId}"/>
+                        <button class="delete-project-btn" th:type="submit" th:text="'삭제'"></button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

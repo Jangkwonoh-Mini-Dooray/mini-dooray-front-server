@@ -1,0 +1,62 @@
+.milestone-container {
+    margin-left: 80px;
+    text-align: center;
+    width: 95%;
+}
+
+.milestone-title {
+    margin-top: 70px;
+    color: #0542AE;
+}
+
+.btn-modify, .btn-delete, .btn-create {
+    background: #0542AE;
+    color: white;
+    font-size: 14px;
+    text-align: center;
+    width: 80px;
+    height: 40px;
+    border-radius: 18px;
+    font-weight: bold;
+}
+
+.btn-create {
+    width: 130px;
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+
+.btn-modify:hover, .btn-delete:hover, btn-create:hover {
+    cursor: pointer;
+    font-size: 15px;
+    background: #003085;
+}
+
+.table_title {
+    background: #0542AE;
+    color: white;
+}
+
+table {
+    width: 90%;
+    margin: 0 auto;
+    border-collapse: collapse;
+    border:1px #ccc solid;
+}
+
+table tr>td,th{
+    padding:5px;
+    height: 40px;
+    border:1px #ccc solid;
+}
+
+input, select {
+    width: 200px;
+    height: 40px;
+    maring-bottom: 10px;
+    padding-left: 15px;
+}
+
+select {
+    width: 220px;
+}

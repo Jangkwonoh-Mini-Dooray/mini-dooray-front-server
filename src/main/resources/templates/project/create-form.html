@@ -16,6 +16,7 @@
         <div><a><img class="icon" src="/img/account.png"/></a></div>
     </div>
     <div class="write-container">
+        <h1 th:text="'STEP 2-1. 프로젝트 만들기 : 프로젝트 생성'"></h1>
         <form th:method="post" th:action="@{${action}}" th:object="${reqProjectDto}">
             <div><input type="hidden" name="projectStatusName" th:value="'활성'" /></div>
             <div><input type="text" name="name" th:attr="placeholder='프로젝트명을 입력해주세요.'"

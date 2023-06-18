@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <title th:text="'sign up'"></title>
+  <title th:text="'Mini Dooray! | 회원가입'"></title>
   <link rel="stylesheet" href="/css/default.css"/>
   <link rel="stylesheet" href="/css/signup.css"/>
 </head>
 <body>
 <h1 th:text="'회원가입'"></h1>
 <div class="log-container">
-  <form th:method="post" th:action="@{/account/signup}">
+  <form th:method="post" th:action="@{/accounts/signup}">
     <p><input type="text" name="memberId" th:attr="placeholder='ID'"  required />
     </p>
     <p><input type="password" name="password" th:attr="placeholder='Password'" required />

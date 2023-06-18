@@ -29,6 +29,8 @@ public interface TaskService {
 
     void createProjectMember(Long projectId, String[] members);
 
+    void modifyProjectMember(Long projectId, String[] members);
+
     List<GetTaskDto> getTasks(Long projectId);
 
     GetTaskDto getTask(Long projectId, Long taskId);

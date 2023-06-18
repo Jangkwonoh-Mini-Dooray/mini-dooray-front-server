@@ -5,20 +5,7 @@
     <title th:text="'Mini Dooray! | 마일스톤'"></title>
     <link rel="stylesheet" href="/css/default.css"/>
     <link rel="stylesheet" href="/css/main.css"/>
-    <script type="text/javascript">
-        window.addEventListener('DOMContentLoaded', function () {
-            'use strict';
-            const btnDelete = document.getElementById("btn-delete");
-
-            btnDelete.addEventListener('click', function () {
-                const ans = confirm("삭제하시겠습니까?");
-                if (ans) {
-                    const deleteForm = document.getElementById("milestone-delete-form");
-                    deleteForm.submit();
-                }
-            });
-        });
-    </script>
+    <link rel="stylesheet" href="/css/milestone.css"/>
 </head>
 <body>
 <th:block th:include="fragments/header"/>
@@ -29,8 +16,8 @@
         <div><a th:href="@{'/projects/' + ${#authentication.name}}"><img class="icon" src="/img/task.png"/></a></div>
         <div><a><img class="icon" src="/img/account.png"/></a></div>
     </div>
-    <div>
-        <h1><span th:text="${projectName}"></span>&nbsp;&nbsp;<span th:text="마일스톤"></span></h1>
+    <div class="milestone-container">
+        <h1 class="milestone-title"><span th:text="${projectName}"></span>&nbsp;<span th:text="'마일스톤 관리'"></span></h1>
 
         <a th:href="@{'/tasks/milestones/' + ${projectId} + '/create'}">
             <button class="btn-create" th:text="'+ 마일스톤 생성'"></button>
@@ -44,8 +31,8 @@
                 <th th:text="'시작 기간'"></th>
                 <th th:text="'종료 기간'"></th>
                 <th th:text="'상태'"></th>
-                <th></th>
-                <th></th>
+                <th th:text="'삭제'"></th>
+                <th th:text="'수정'"></th>
             </tr>
             </thead>
             <tbody>
