@@ -26,7 +26,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
                 .authorizeRequests(e -> e
-                        .antMatchers("/redirect-index").authenticated()
+                        .antMatchers("/projects/**").authenticated()
                         .antMatchers("/**").permitAll())
                 .formLogin(f -> f
                         .usernameParameter("id")

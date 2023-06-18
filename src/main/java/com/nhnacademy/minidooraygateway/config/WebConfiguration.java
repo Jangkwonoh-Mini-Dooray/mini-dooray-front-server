@@ -22,6 +22,7 @@ public class WebConfiguration implements WebMvcConfigurer {
     }
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
+        registry.addRedirectViewController("/", "/projects");
         registry.addViewController("/login").setViewName("account/login");
     }
 }

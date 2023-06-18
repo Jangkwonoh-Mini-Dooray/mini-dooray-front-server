@@ -48,7 +48,7 @@ public class TaskController {
 
         model.addAttribute("projectList", projectList);
         model.addAttribute("task", task);
-        model.addAttribute("deleteAction", "/tasks/" + taskId + "/" + projectId + "/ " + memberId);
+        model.addAttribute("deleteAction", "/tasks/" + taskId + "/" + projectId + "/" + memberId);
         model.addAttribute("modifyAction", "/tasks/" + projectId + "/modify/" + taskId);
 
         return "task/view";
@@ -96,7 +96,7 @@ public class TaskController {
         return "redirect:/tasks/" + projectId + "/" + reqTaskDto.getTaskWriterMemberId();
     }
 
-    @DeleteMapping("{task-id}/{project-id}/{member-id}")
+    @DeleteMapping("/{task-id}/{project-id}/{member-id}")
     public String deleteTask(Model model,
                              @PathVariable("task-id") Long taskId,
                              @PathVariable("project-id") Long projectId,

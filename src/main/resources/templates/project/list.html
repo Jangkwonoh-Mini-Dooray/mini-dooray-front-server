@@ -18,7 +18,7 @@
     <div id="project-main-container">
         <div th:if="${projectList.isEmpty()}">
             <h1 class="welcome" th:text="'Welcome !'"></h1>
-            <span class="message-none" th:text="'아직 소속된 프로젝트가 없습니다. 새로운 프로젝트를 생성해보세요!'"></span>
+            <span class="message-none" th:text="'아직 소속된 프로젝트가 없습니다. 새로운 프로젝트를 생성해보세요 !'"></span>
             <br>
             <a th:href="@{${createProjectLink}}">
                 <button class="add-project-btn-none" th:text="'새 프로젝트 만들기'"></button>
