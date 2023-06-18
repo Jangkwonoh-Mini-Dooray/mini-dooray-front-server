@@ -83,6 +83,7 @@
 	</dependencies>
 
 	<build>
+		<finalName>mini-dooray-front-server</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

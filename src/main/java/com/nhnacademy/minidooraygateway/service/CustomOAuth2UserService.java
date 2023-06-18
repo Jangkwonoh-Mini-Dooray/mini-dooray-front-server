@@ -1,6 +1,5 @@
 package com.nhnacademy.minidooraygateway.service;
 
-import com.nhnacademy.minidooraygateway.account.adaptor.AccountAdaptor;
 import com.nhnacademy.minidooraygateway.account.dto.member.GetMemberDto;
 import com.nhnacademy.minidooraygateway.config.UrlProperties;
 import com.nhnacademy.minidooraygateway.domain.OAuth2GitEmail;
