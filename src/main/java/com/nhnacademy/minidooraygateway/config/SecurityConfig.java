@@ -48,7 +48,7 @@ public class SecurityConfig {
                         .defaultSuccessUrl("/projects")
                         .userInfoEndpoint()
                         .userService(customOAuth2UserService))
-//                .addFilterBefore(new OAuthEmailLoginFailureFilter(), OAuth2AuthorizationRequestRedirectFilter.class)
+                .addFilterBefore(new OAuthEmailLoginFailureFilter(), OAuth2AuthorizationRequestRedirectFilter.class)
                 .build();
     }
 

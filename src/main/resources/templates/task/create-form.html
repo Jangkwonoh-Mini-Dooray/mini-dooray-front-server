@@ -11,7 +11,7 @@
 
 <div id="main-container">
     <div id="icon-menu-container">
-        <div><a><img class="icon" src="/img/home.png"/></a></div>
+        <div><a th:href="@{'/projects/' + ${#authentication.name}}"><img class="icon" src="/img/home.png"/></a></div>
         <div><a th:href="@{'/projects/' + ${#authentication.name}}"><img class="icon" src="/img/task.png"/></a></div>
         <div><a><img class="icon" src="/img/account.png"/></a></div>
     </div>
