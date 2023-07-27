@@ -1,7 +1,7 @@
 package com.nhnacademy.minidooraygateway.service;
 
-import com.nhnacademy.minidooraygateway.account.adaptor.AccountAdaptor;
-import com.nhnacademy.minidooraygateway.account.dto.member.GetMemberDto;
+import com.nhnacademy.minidooraygateway.api.account.adaptor.AccountAdaptor;
+import com.nhnacademy.minidooraygateway.api.account.dto.member.GetMemberDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;

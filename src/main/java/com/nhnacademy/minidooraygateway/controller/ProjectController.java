@@ -1,11 +1,11 @@
 package com.nhnacademy.minidooraygateway.controller;
 
-import com.nhnacademy.minidooraygateway.account.dto.member.GetMemberDto;
-import com.nhnacademy.minidooraygateway.account.service.AccountService;
-import com.nhnacademy.minidooraygateway.task.dto.project.GetProjectDto;
-import com.nhnacademy.minidooraygateway.task.dto.project.ReqProjectDto;
-import com.nhnacademy.minidooraygateway.task.dto.project.RespProjectDto;
-import com.nhnacademy.minidooraygateway.task.service.TaskService;
+import com.nhnacademy.minidooraygateway.api.account.dto.member.GetMemberDto;
+import com.nhnacademy.minidooraygateway.api.account.service.AccountService;
+import com.nhnacademy.minidooraygateway.api.task.dto.project.GetProjectDto;
+import com.nhnacademy.minidooraygateway.api.task.dto.project.ReqProjectDto;
+import com.nhnacademy.minidooraygateway.api.task.dto.project.RespProjectDto;
+import com.nhnacademy.minidooraygateway.api.task.service.TaskService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

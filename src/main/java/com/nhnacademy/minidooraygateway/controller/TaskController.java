@@ -1,13 +1,13 @@
 package com.nhnacademy.minidooraygateway.controller;
 
-import com.nhnacademy.minidooraygateway.task.dto.milestone.GetMilestoneDto;
-import com.nhnacademy.minidooraygateway.task.dto.milestone.ReqMilestoneDto;
-import com.nhnacademy.minidooraygateway.task.dto.project.GetProjectDto;
-import com.nhnacademy.minidooraygateway.task.dto.tag.GetTagDto;
-import com.nhnacademy.minidooraygateway.task.dto.tag.ReqTagDto;
-import com.nhnacademy.minidooraygateway.task.dto.task.GetTaskDto;
-import com.nhnacademy.minidooraygateway.task.dto.task.ReqTaskDto;
-import com.nhnacademy.minidooraygateway.task.service.TaskService;
+import com.nhnacademy.minidooraygateway.api.task.dto.milestone.GetMilestoneDto;
+import com.nhnacademy.minidooraygateway.api.task.dto.milestone.ReqMilestoneDto;
+import com.nhnacademy.minidooraygateway.api.task.dto.project.GetProjectDto;
+import com.nhnacademy.minidooraygateway.api.task.dto.tag.GetTagDto;
+import com.nhnacademy.minidooraygateway.api.task.dto.tag.ReqTagDto;
+import com.nhnacademy.minidooraygateway.api.task.dto.task.GetTaskDto;
+import com.nhnacademy.minidooraygateway.api.task.dto.task.ReqTaskDto;
+import com.nhnacademy.minidooraygateway.api.task.service.TaskService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

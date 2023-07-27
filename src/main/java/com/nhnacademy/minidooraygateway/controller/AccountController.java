@@ -1,7 +1,7 @@
 package com.nhnacademy.minidooraygateway.controller;
 
-import com.nhnacademy.minidooraygateway.account.dto.member.PostMemberDto;
-import com.nhnacademy.minidooraygateway.account.service.AccountService;
+import com.nhnacademy.minidooraygateway.api.account.dto.member.PostMemberDto;
+import com.nhnacademy.minidooraygateway.api.account.service.AccountService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
