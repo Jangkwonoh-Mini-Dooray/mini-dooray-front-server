@@ -21,7 +21,7 @@
 <br>
 
 # 🛎 주요 서비스
-- `ID, PWD 로그인` / `Github AOuth 2.0 로그인` : 회원 e-mail 과 Github e-mail 이 일치하면 Github 로그인이 성공합니다.
+- `ID, PWD 로그인` / `Github Outh 2.0 로그인` : 회원 e-mail 과 Github e-mail 이 일치하면 Github 로그인이 성공합니다.
 - `프로젝트 공유` : 프로젝트를 생성하고, 원하는 프로젝트 멤버를 추가할 수 있습니다.
 - `업무 공유` : 프로젝트 멤버는 서로 업무를 작성하고, 공유할 수 있습니다.
 
