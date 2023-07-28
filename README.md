@@ -1,7 +1,7 @@
 # mini-dooray-front-server
-모든 서비스 요청을 받으며 프레젠테이션 기능을 담당하는 Front Server 입니다.
-**프로젝트**를 만들고, **업무**를 관리할 수 있습니다.
-내 친구, 동료와 함께 공유할 수 있는 **협업 Tool** 입니다.
+- 모든 서비스 요청을 받으며 프레젠테이션 기능을 담당하는 Front Server 입니다. <br>
+- **프로젝트**를 만들고, **업무**를 관리할 수 있습니다. <br>
+- 내 친구, 동료와 함께 공유할 수 있는 **협업 Tool** 입니다. <br>
 
 <br>
 
@@ -27,9 +27,9 @@
 
 # 🖥 UI
 
-<img width="1470" alt="로그인" src="https://github.com/Jangkwonoh-Mini-Dooray/mini-dooray-front-server/assets/97905221/8690affd-785c-4302-a893-f36111de0f6b">
+<img width="949" alt="로그인" src="https://github.com/Jangkwonoh-Mini-Dooray/mini-dooray-front-server/assets/97905221/8690affd-785c-4302-a893-f36111de0f6b">
 
 <img width="949" alt="프로젝트" src="https://github.com/Jangkwonoh-Mini-Dooray/mini-dooray-front-server/assets/97905221/9b3231c8-0f0a-4a40-9a91-706d6dbb039d">
 
-<img width="1470" alt="업무" src="https://github.com/Jangkwonoh-Mini-Dooray/mini-dooray-front-server/assets/97905221/8e7e8ec1-3ad7-4e26-bf26-3c4862fd7463">
+<img width="949" alt="업무" src="https://github.com/Jangkwonoh-Mini-Dooray/mini-dooray-front-server/assets/97905221/8e7e8ec1-3ad7-4e26-bf26-3c4862fd7463">
 
