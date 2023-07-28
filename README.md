@@ -29,7 +29,7 @@
 
 <img width="1470" alt="로그인" src="https://github.com/Jangkwonoh-Mini-Dooray/mini-dooray-front-server/assets/97905221/8690affd-785c-4302-a893-f36111de0f6b">
 
-<img width="1470" alt="프로젝트" src="https://github.com/Jangkwonoh-Mini-Dooray/mini-dooray-front-server/assets/97905221/09f45b6b-02e1-4488-a0bd-af77b295c092">
+<img width="949" alt="프로젝트" src="https://github.com/Jangkwonoh-Mini-Dooray/mini-dooray-front-server/assets/97905221/9b3231c8-0f0a-4a40-9a91-706d6dbb039d">
 
 <img width="1470" alt="업무" src="https://github.com/Jangkwonoh-Mini-Dooray/mini-dooray-front-server/assets/97905221/8e7e8ec1-3ad7-4e26-bf26-3c4862fd7463">
 
