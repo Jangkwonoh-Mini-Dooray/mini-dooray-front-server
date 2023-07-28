@@ -8,8 +8,8 @@
 # 🛠 기술 스택
 - `Front-End` : HTML (Thymeleaf), CSS
 - `Back-End` : Java, Spring Boot, Spring Security
-- `Database` : MySQL
-- `Deployment` : Docker (로컬 배포), AWS
+- `Database` : Redis
+- `Deployment` : Docker (로컬 배포)
 - `Build` : Maven
 - `Tool` : IntelliJ IDEA, Github
 
